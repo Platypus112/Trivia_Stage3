@@ -1,9 +1,12 @@
+using Trivia_Stage2.ViewModels;
+
 namespace Trivia_Stage2.Views;
 
-public partial class NewPage1 : ContentPage
+public partial class MenuPage : ContentPage
 {
-	public NewPage1()
+	public MenuPage(MenuPageViewModel vm)
 	{
 		InitializeComponent();
+		this.BindingContext= vm;
 	}
 }

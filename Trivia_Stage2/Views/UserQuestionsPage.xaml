@@ -2,6 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trivia_Stage2.Views.UserQuestionsPage"
+             xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
+             xmlns:Model="clr-namespace:Trivia_Stage1.Models"
+             x:DataType="viewModel:UserQuestionsPageViewModel"
              Title="UserQuestionsPage">
     <VerticalStackLayout>
         <Label 

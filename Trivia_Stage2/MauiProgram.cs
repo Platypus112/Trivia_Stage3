@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Trivia_Stage2.Services;
 using Trivia_Stage2.Views;
+using Trivia_Stage2.ViewModels;
 
 namespace Trivia_Stage2
 {
@@ -16,9 +17,24 @@ namespace Trivia_Stage2
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
-            .Services.AddSingleton<Service>();
+            //Registering serivces
+            .Services.AddSingleton<Service>()
+
+            //Registering Views
+            .AddTransient<MenuPage>()
+            .AddTransient<ApproveQuestionsPage>()
+            .AddTransient<BestScoresPage>()
+            .AddTransient<UserAdminPage>()
+            .AddTransient<UserQuestionsPage>()
+
+            //Registering ViewModels
+            .AddTransient<MenuPageViewModel>()
+            .AddTransient<ApproveQuestionsPageViewModel>()
+            .AddTransient<BestScoresPageViewModel>()
+            .AddTransient<UserAdminPageViewModel>()
+            .AddTransient<UserQuestionsPageViewModel>();
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
