@@ -4,12 +4,36 @@
              x:Class="Trivia_Stage2.Views.ApproveQuestionsPage"
              xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
              xmlns:Model="clr-namespace:Trivia_Stage1.Models"
-             x:DataType="viewModel:ApproveQuestionsPageViewModel"
+             x:DataType="ViewModels:ApproveQuestionsPageViewModel"
              Title="ApproveQuestionsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <CollectionView
+        Margin="20"
+        ItemsSource="{Binding PendingQuestions}"
+        SelectedItem="{Binding SelectedPendingQuestion}"
+        SelectionChangedCommand="{Binding SelectCommand}"
+        SelectionMode="Single">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:Question">
+                <Grid
+                    Padding="10"
+                    ColumnDefinitions="Auto,Auto"
+                    ColumnSpacing="6"
+                    RowDefinitions="Auto,Auto"
+                    RowSpacing="6">
+                    <Label
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        Text="{Binding Id}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontAttributes="Italic"
+                        Text="{Binding Subject}"
+                        VerticalOptions="End" />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
 </ContentPage>
