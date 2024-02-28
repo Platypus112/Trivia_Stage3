@@ -60,7 +60,7 @@
                  Grid.Column="0"
                  Grid.ColumnSpan="2"
                  Placeholder="Add Monkey"
-                 Text="{Binding Entry}" />
+                 />
                 <CollectionView
                  Margin="3"
                  Grid.Row="3"
