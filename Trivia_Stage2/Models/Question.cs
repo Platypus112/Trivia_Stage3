@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace Trivia_Stage1.Models;
+namespace Trivia_Stage2.Models;
 
 public partial class Question
 {
