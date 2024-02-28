@@ -26,6 +26,14 @@ namespace Trivia_Stage2.Services
             questionStatusService = new QuestionStatusService();
             rankService = new RankService();
             subjectService = new SubjectService();
+            AddSubjectsToQuestions();
+        }
+        private async void AddSubjectsToQuestions()
+        {
+            foreach (Question q in Questions)
+            {
+                q.Subject = Subjects.Where(x => x.SubjectId == q.SubjectId).FirstOrDefault();
+            }
         }
 
         public List<Question> GetPendingQuestions()
@@ -68,6 +76,7 @@ namespace Trivia_Stage2.Services
         {
             FillList();
         }
+        
         private async void FillList()
         {
             Questions = new List<Question>();
@@ -130,6 +139,18 @@ namespace Trivia_Stage2.Services
                 QuestionText = "When was Ramon high school established?",
                 SubjectId = 5,
                 StatusId = 2
+            });
+            Questions.Add(new Question()
+            {
+                QuestionId = 6,
+                PlayerId = 1,
+                Correct = "90 minutes",
+                Incorrect1 = "43 minutes",
+                Incorrect2 = "92 minutes",
+                Incorrect3 = "110 minutes",
+                QuestionText = "How long is the trolls3 movie?",
+                SubjectId = 1,
+                StatusId = 1
             });
         }
 
