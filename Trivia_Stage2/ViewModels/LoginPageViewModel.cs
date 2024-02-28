@@ -43,7 +43,7 @@ namespace Trivia_Stage2.ViewModels
                 NotifColor = Colors.Green;
                 Logged = true;
                 AppShell.Current.IsVisible = true;
-                await AppShell.Current.GoToAsync("MenuPage");
+                await AppShell.Current.GoToAsync("ApproveQuestionsPage");
             }
             else
             {

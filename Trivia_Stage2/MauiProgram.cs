@@ -21,7 +21,6 @@ namespace Trivia_Stage2
             .Services.AddSingleton<Service>()
 
             //Registering Views
-            .AddTransient<MenuPage>()
             .AddTransient<ApproveQuestionsPage>()
             .AddTransient<BestScoresPage>()
             .AddTransient<UserAdminPage>()
@@ -29,7 +28,6 @@ namespace Trivia_Stage2
             .AddTransient<LoginPage>()
 
             //Registering ViewModels
-            .AddTransient<MenuPageViewModel>()
             .AddTransient<ApproveQuestionsPageViewModel>()
             .AddTransient<BestScoresPageViewModel>()
             .AddTransient<UserAdminPageViewModel>()

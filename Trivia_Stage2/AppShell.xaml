@@ -8,34 +8,22 @@
     
     <FlyoutItem
         Title="Menu"
-        FlyoutDisplayOptions="AsMultipleItems">
-        <Tab Title="Login Page"
-            >
-            <ShellContent
-            ContentTemplate="{DataTemplate views:LoginPage}"/>
-        </Tab>
-        <Tab
-            Title="Menu Page"
-            >
-            <ShellContent
-            ContentTemplate="{DataTemplate views:MenuPage}"/>
-        </Tab>
-        <Tab Title="Approve Quesitons"
-            >
-            <ShellContent ContentTemplate="{DataTemplate views:ApproveQuestionsPage}" />
-        </Tab>
-        <Tab Title="Best Scores"
-            >
-            <ShellContent ContentTemplate="{DataTemplate views:BestScoresPage}" />
-        </Tab>
-        <Tab Title="User Admin"
-            >
-            <ShellContent ContentTemplate="{DataTemplate views:UserAdminPage}" />
-        </Tab>
-        <Tab Title="User Questions"
-            >
-            <ShellContent ContentTemplate="{DataTemplate views:UserQuestionsPage}" />
-        </Tab>
+        FlyoutDisplayOptions="AsMultipleItems"
+        >
+        
+        <ShellContent 
+                Title="Login Page"
+                IsEnabled="False"
+                IsVisible="True"
+                ContentTemplate="{DataTemplate views:LoginPage}"/>
+        
+        <ShellContent Title="Approve Quesitons" ContentTemplate="{DataTemplate views:ApproveQuestionsPage}" />
+        
+        <ShellContent Title="Best Scores" ContentTemplate="{DataTemplate views:BestScoresPage}" />
+        
+        <ShellContent Title="User Admin" ContentTemplate="{DataTemplate views:UserAdminPage}" />
+        
+        <ShellContent Title="User Questions" ContentTemplate="{DataTemplate views:UserQuestionsPage}" />
     </FlyoutItem>
 
 </Shell>

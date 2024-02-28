@@ -7,13 +7,13 @@ namespace Trivia_Stage2
     {
         public AppShell()
         {
-            InitializeComponent();
             Routing.RegisterRoute("ApproveQuestionsPage",typeof(ApproveQuestionsPage));
             Routing.RegisterRoute("BestScoresPage", typeof(BestScoresPage));
             Routing.RegisterRoute("UserAdminPage", typeof(UserAdminPage));
             Routing.RegisterRoute("UserQuestionsPage", typeof(UserQuestionsPage));
             Routing.RegisterRoute("LoginPage", typeof(LoginPage));
-            Routing.RegisterRoute("MenuPage", typeof(MenuPage));
+            InitializeComponent();
+            
         }
     }
 }
