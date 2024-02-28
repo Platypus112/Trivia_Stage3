@@ -37,12 +37,14 @@ namespace Trivia_Stage2.ViewModels
 
         private async Task ApproveQuestion(Object obj)
         {
-            
+            PendingQuestions.Remove(((Question)obj));
+            service.ApproveQuestion(((Question)obj));
         }
         
         private async Task DeclineQuestion(Object obj)
         {
             PendingQuestions.Remove(((Question)obj));
+            service.ApproveQuestion(((Question)obj));
 
         }
     }
