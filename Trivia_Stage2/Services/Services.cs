@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Trivia_Stage1.Models;
-using Xamarin.Google.Crypto.Tink.Signature;
 
 namespace Trivia_Stage2.Services
 {
@@ -28,6 +27,11 @@ namespace Trivia_Stage2.Services
             rankService = new RankService();
             subjectService = new SubjectService();
         }
+
+        public List<Question> GetPendingQuestions()
+        {
+            return Questions.Where(x => x.StatusId == 1).ToList();
+        }
     }
     internal class PlayerService
     {
@@ -49,7 +53,7 @@ namespace Trivia_Stage2.Services
             });
             Players.Add(new Player()
             {
-                Email = "Idancar7@gmail.com",
+                Email = "idancar7@gmail.com",
                 Password = "4444",
                 PlayerName = "joe4",
                 RankId = 1,
@@ -128,6 +132,8 @@ namespace Trivia_Stage2.Services
                 StatusId = 2
             });
         }
+
+       
     }
     internal class RankService
     {
@@ -219,5 +225,7 @@ namespace Trivia_Stage2.Services
                 SubjectName = "Ramon"
             });
         }
+
+        
     }
 }
