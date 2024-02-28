@@ -4,17 +4,14 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Trivia_Stage2"
-    xmlns:views="clr-namespace:Trivia_Stage2.Views">
-    
-    <FlyoutItem
-        Title="Menu"
-        FlyoutDisplayOptions="AsMultipleItems"
-        >
+    xmlns:views="clr-namespace:Trivia_Stage2.Views"
+    FlyoutBehavior="Flyout">
+ 
         
         <ShellContent 
                 Title="Login Page"
                 IsEnabled="False"
-                IsVisible="True"
+                FlyoutItemIsVisible="False"
                 ContentTemplate="{DataTemplate views:LoginPage}"/>
         
         <ShellContent Title="Approve Quesitons" ContentTemplate="{DataTemplate views:ApproveQuestionsPage}" />
@@ -24,6 +21,6 @@
         <ShellContent Title="User Admin" ContentTemplate="{DataTemplate views:UserAdminPage}" />
         
         <ShellContent Title="User Questions" ContentTemplate="{DataTemplate views:UserQuestionsPage}" />
-    </FlyoutItem>
+
 
 </Shell>

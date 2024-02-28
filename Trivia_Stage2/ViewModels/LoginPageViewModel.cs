@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -31,19 +32,18 @@ namespace Trivia_Stage2.ViewModels
             if (Logged != true)
             {
                 Logged = false;
-                AppShell.Current.IsVisible = false;
+                AppShell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
             }
         }
 
-        private async void Login()
+        private void Login()
         {
             if (service.LogPlayer(playerName,password))
             {
                 Notif = "Login succeeded successfully";
                 NotifColor = Colors.Green;
                 Logged = true;
-                AppShell.Current.IsVisible = true;
-                await AppShell.Current.GoToAsync("ApproveQuestionsPage");
+                AppShell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
             }
             else
             {
