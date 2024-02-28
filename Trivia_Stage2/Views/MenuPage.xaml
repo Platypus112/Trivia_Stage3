@@ -5,7 +5,7 @@
              xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
              xmlns:Model="clr-namespace:Trivia_Stage1.Models"
              x:DataType="viewModel:MenuPageViewModel"
-             Title="NewPage1">
+             Title="Menu-Page">
     <VerticalStackLayout>
         <Button
             Margin="6"
