@@ -22,15 +22,14 @@ namespace Trivia_Stage2.ViewModels
         public bool IsRefreshing { get => isRefreshing; set { isRefreshing = value; OnPropertyChanged(); } }
 
        
-        
-        
+
         public ICommand DeclineQuestionCommand { get; private set; }
         public ICommand ApproveQuestionCommand { get; private set; }
         public ApproveQuestionsPageViewModel(Service service_)
         {
             service = service_;
 
-           
+            PendingQuestions = new ObservableCollection<Question>(service.GetPendingQuestions());
             DeclineQuestionCommand = new Command(async (Object obj) => { await DeclineQuestion(obj); });
             ApproveQuestionCommand = new Command(async (Object obj) => await ApproveQuestion(obj));
         }
