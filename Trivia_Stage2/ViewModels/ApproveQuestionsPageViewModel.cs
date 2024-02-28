@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Trivia_Stage1.Models;
+using Trivia_Stage2.Models;
 using Trivia_Stage2.Services;
 
 
