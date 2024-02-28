@@ -6,6 +6,7 @@
     xmlns:Model="clr-namespace:Trivia_Stage2.Models"
     xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
     Title="ApproveQuestionsPage"
+    
     x:DataType="viewModel:ApproveQuestionsPageViewModel">
 
     <!--<CollectionView

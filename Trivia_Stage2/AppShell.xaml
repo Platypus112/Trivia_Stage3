@@ -4,25 +4,38 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Trivia_Stage2"
-    xmlns:views="clr-namespace:Trivia_Stage2.Views"
-    xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
-    Shell.FlyoutBehavior="Flyout">
-    <ShellContent
-    Title="Menu Page"
-    ContentTemplate="{DataTemplate views:LoginPage}"
-    Route="LoginPage" />
+    xmlns:views="clr-namespace:Trivia_Stage2.Views">
+    
     <FlyoutItem
         Title="Menu"
-        FlyoutDisplayOptions="AsMultipleItems"
-        Icon="https://cdn.icon-icons.com/icons2/916/PNG/512/Menu_icon_icon-icons.com_71858.png">
-        <ShellContent
+        FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="Login Page"
+            >
+            <ShellContent
+            ContentTemplate="{DataTemplate views:LoginPage}"/>
+        </Tab>
+        <Tab
             Title="Menu Page"
-            ContentTemplate="{DataTemplate views:MenuPage}"
-            Route="MenuPage" />
-        <ShellContent Title="Approve Quesitons" ContentTemplate="{DataTemplate views:ApproveQuestionsPage}" />
-        <ShellContent Title="Best Scores" ContentTemplate="{DataTemplate views:BestScoresPage}" />
-        <ShellContent Title="User Admin" ContentTemplate="{DataTemplate views:UserAdminPage}" />
-        <ShellContent Title="User Admin" ContentTemplate="{DataTemplate views:UserQuestionsPage}" />
+            >
+            <ShellContent
+            ContentTemplate="{DataTemplate views:MenuPage}"/>
+        </Tab>
+        <Tab Title="Approve Quesitons"
+            >
+            <ShellContent ContentTemplate="{DataTemplate views:ApproveQuestionsPage}" />
+        </Tab>
+        <Tab Title="Best Scores"
+            >
+            <ShellContent ContentTemplate="{DataTemplate views:BestScoresPage}" />
+        </Tab>
+        <Tab Title="User Admin"
+            >
+            <ShellContent ContentTemplate="{DataTemplate views:UserAdminPage}" />
+        </Tab>
+        <Tab Title="User Questions"
+            >
+            <ShellContent ContentTemplate="{DataTemplate views:UserQuestionsPage}" />
+        </Tab>
     </FlyoutItem>
 
 </Shell>

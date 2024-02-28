@@ -53,7 +53,7 @@ namespace Trivia_Stage2.Services
             q.Subject.SubjectId = 2;
         }
 
-        public async void DeclineeQuestion(Question q)
+        public async void DeclineQuestion(Question q)
         {
             q.Subject.SubjectId = 0;
         }

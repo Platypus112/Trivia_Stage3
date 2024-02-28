@@ -28,17 +28,22 @@ namespace Trivia_Stage2.ViewModels
             service = s;
             LoginCommand = new Command(Login, () => !string.IsNullOrEmpty(PlayerName) && !string.IsNullOrEmpty(Password));
             CancelCommand = new Command(Cancel, () => !string.IsNullOrEmpty(PlayerName) || !string.IsNullOrEmpty(Password));
-            Logged = false;
+            if (Logged != true)
+            {
+                Logged = false;
+                AppShell.Current.IsVisible = false;
+            }
         }
 
-        private void Login()
+        private async void Login()
         {
             if (service.LogPlayer(playerName,password))
             {
                 Notif = "Login succeeded successfully";
                 NotifColor = Colors.Green;
                 Logged = true;
-                AppShell.Current.GoToAsync("MenuPage");
+                AppShell.Current.IsVisible = true;
+                await AppShell.Current.GoToAsync("MenuPage");
             }
             else
             {

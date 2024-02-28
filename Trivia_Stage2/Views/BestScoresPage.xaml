@@ -5,6 +5,7 @@
              xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
              xmlns:Model="clr-namespace:Trivia_Stage2.Models"
              x:DataType="viewModel:BestScoresPageViewModel"
+             
              Title="BestScoresPage">
     <VerticalStackLayout>
         <Label 
