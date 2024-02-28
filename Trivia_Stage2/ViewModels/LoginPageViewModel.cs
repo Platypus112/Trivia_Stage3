@@ -11,6 +11,8 @@ namespace Trivia_Stage2.ViewModels
     public class LoginPageViewModel : ViewModel
     {
         private Service service;
+        private bool logged;
+        public bool Logged { get { return logged; } set {  logged = value; OnPropertyChanged(); } }
         private string password;
         public string Password { get { return password; } set { password = value; OnPropertyChanged(); ((Command)LoginCommand).ChangeCanExecute(); ((Command)CancelCommand).ChangeCanExecute(); } }
         private string notif;
@@ -26,6 +28,7 @@ namespace Trivia_Stage2.ViewModels
             service = s;
             LoginCommand = new Command(Login, () => !string.IsNullOrEmpty(PlayerName) && !string.IsNullOrEmpty(Password));
             CancelCommand = new Command(Cancel, () => !string.IsNullOrEmpty(PlayerName) || !string.IsNullOrEmpty(Password));
+            Logged = false;
         }
 
         private void Login()
@@ -34,6 +37,8 @@ namespace Trivia_Stage2.ViewModels
             {
                 Notif = "Login succeeded successfully";
                 NotifColor = Colors.Green;
+                Logged = true;
+                AppShell.Current.GoToAsync("MenuPage");
             }
             else
             {

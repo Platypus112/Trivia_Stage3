@@ -1,4 +1,5 @@
-﻿using Trivia_Stage2.Views;
+﻿using Trivia_Stage2.ViewModels;
+using Trivia_Stage2.Views;
 namespace Trivia_Stage2
     
 {
@@ -12,6 +13,7 @@ namespace Trivia_Stage2
             Routing.RegisterRoute("UserAdminPage", typeof(UserAdminPage));
             Routing.RegisterRoute("UserQuestionsPage", typeof(UserQuestionsPage));
             Routing.RegisterRoute("LoginPage", typeof(LoginPage));
+            Routing.RegisterRoute("MenuPage", typeof(MenuPage));
         }
     }
 }

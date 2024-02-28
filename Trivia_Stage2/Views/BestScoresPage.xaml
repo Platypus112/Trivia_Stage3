@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trivia_Stage2.Views.BestScoresPage"
              xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
-             xmlns:Model="clr-namespace:Trivia_Stage1.Models"
+             xmlns:Model="clr-namespace:Trivia_Stage2.Models"
              x:DataType="viewModel:BestScoresPageViewModel"
              Title="BestScoresPage">
     <VerticalStackLayout>
