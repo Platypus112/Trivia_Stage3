@@ -36,4 +36,116 @@
         </CollectionView.ItemTemplate>
     </CollectionView>-->
 
+
+
+
+    <ScrollView Margin="10">
+        
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+               
+               
+                <Entry
+                 Margin="3"
+                 Grid.Row="2"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="2"
+                 Placeholder="Add Monkey"
+                 Text="{Binding Entry}" />
+                <CollectionView
+                 Margin="3"
+                 Grid.Row="3"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="2"
+                 ItemsSource="{Binding PendingQuestions}"
+                 SelectedItem="{Binding SelectedPendingQuestion}"
+                 SelectionMode="Single"
+                 x:Name="collection">
+
+                    <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Model:Question">
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItem
+                                     Command="{Binding Source={x:Reference collection}, Path=BindingContext.RemoveMonkeyCommand}"
+                                     CommandParameter="{Binding .}"
+                                     IconImageSource="https://cdn-icons-png.flaticon.com/512/3334/3334328.png"
+                                     >
+
+                                    </SwipeItem>
+                                </SwipeView.RightItems>
+                                <Border
+                                     Margin="4,5"
+                                     Padding="4"
+                                     HeightRequest="130">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                             Grid.Row="0"
+                                             Grid.Column="0"
+                                             Margin="3">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Name: " />
+                                                    <Span Text="{Binding QuestionId}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Label
+                                             Grid.Row="1"
+                                             Grid.Column="0"
+                                             Margin="3">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Location: " />
+                                                    <Span Text="{Binding Subject}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Border
+                                         Grid.Row="0"
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="2"
+                                         Grid.RowSpan="2"
+                                         HeightRequest="100" WidthRequest="100">
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="100" />
+                                            </Border.StrokeShape>
+
+                                        </Border>
+                                    </Grid>
+                                </Border>
+
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <Label Text="No Pending Questions" />
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </Grid>
+       
+    </ScrollView>
+    
+    
+    
 </ContentPage>

@@ -41,6 +41,12 @@ namespace Trivia_Stage2.Services
             }
         }
     }
+
+        public List<Question> GetPendingQuestions()
+        {
+            return Questions.Where(x => x.StatusId == 1).ToList();
+        }
+    }
     internal class PlayerService
     {
         public List<Player> Players { get; set; }
@@ -61,7 +67,7 @@ namespace Trivia_Stage2.Services
             });
             Players.Add(new Player()
             {
-                Email = "Idancar7@gmail.com",
+                Email = "idancar7@gmail.com",
                 Password = "4444",
                 PlayerName = "joe4",
                 RankId = 1,
@@ -140,6 +146,8 @@ namespace Trivia_Stage2.Services
                 StatusId = 2
             });
         }
+
+       
     }
     internal class RankService
     {
@@ -231,5 +239,7 @@ namespace Trivia_Stage2.Services
                 SubjectName = "Ramon"
             });
         }
+
+        
     }
 }
