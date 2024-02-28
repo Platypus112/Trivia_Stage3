@@ -8,7 +8,24 @@
              Title="NewPage1">
     <VerticalStackLayout>
         <Button
+            Margin="6"
+            Text="Approve Questions Page"
+            Command="{Binding NavigateToApproveQuestionsPageCommand}"
             />
-        
+        <Button
+            Margin="6"
+            Text="Best Scores Page"
+            Command="{Binding NavigateToBestScoresPageCommand}"
+        />
+        <Button
+            Margin="6"
+            Text="User Admin Page"
+            Command="{Binding NavigateToUserAdminPageCommand}"
+        />
+        <Button
+            Margin="6"
+            Text="User Questions Page"
+            Command="{Binding NavigateToUserQuestionsPageCommand}"
+        />
     </VerticalStackLayout>
 </ContentPage>

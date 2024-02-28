@@ -4,17 +4,17 @@
              x:Class="Trivia_Stage2.Views.ApproveQuestionsPage"
              xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
              xmlns:Model="clr-namespace:Trivia_Stage1.Models"
-             x:DataType="ViewModels:ApproveQuestionsPageViewModel"
+             x:DataType="viewModel:ApproveQuestionsPageViewModel"
              Title="ApproveQuestionsPage">
 
-    <CollectionView
+    <!--<CollectionView
         Margin="20"
         ItemsSource="{Binding PendingQuestions}"
         SelectedItem="{Binding SelectedPendingQuestion}"
         SelectionChangedCommand="{Binding SelectCommand}"
         SelectionMode="Single">
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:Question">
+            <DataTemplate x:DataType="Model:Question">
                 <Grid
                     Padding="10"
                     ColumnDefinitions="Auto,Auto"
@@ -34,6 +34,6 @@
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
-    </CollectionView>
+    </CollectionView>-->
 
 </ContentPage>

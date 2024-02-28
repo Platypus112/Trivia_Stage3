@@ -38,7 +38,7 @@ namespace Trivia_Stage2.ViewModels
         }
         private async void NavigateToUserQuestionPage()
         {
-            await AppShell.Current.GoToAsync("UserQuestionPage");
+            await AppShell.Current.GoToAsync("UserQuestionsPage");
         }
     }
 }
