@@ -40,7 +40,7 @@ namespace Trivia_Stage2.Services
                 return false;
             }
         }
-    }
+    
 
         public List<Question> GetPendingQuestions()
         {
