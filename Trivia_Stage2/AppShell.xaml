@@ -3,12 +3,22 @@
     x:Class="Trivia_Stage2.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Trivia_Stage2.Views"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:local="clr-namespace:Trivia_Stage2"
+    xmlns:views="clr-namespace:Trivia_Stage2.Views"
+    Shell.FlyoutBehavior="Flyout">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MenuPage}"
-        Route="MenuPage" />
+    <FlyoutItem
+        Title="Menu"
+        FlyoutDisplayOptions="AsMultipleItems"
+        Icon="https://cdn.icon-icons.com/icons2/916/PNG/512/Menu_icon_icon-icons.com_71858.png">
+        <ShellContent
+            Title="Menu Page"
+            ContentTemplate="{DataTemplate views:MenuPage}"
+            Route="MenuPage" />
+        <ShellContent Title="Approve Quesitons" ContentTemplate="{DataTemplate views:ApproveQuestionsPage}" />
+        <ShellContent Title="Best Scores" ContentTemplate="{DataTemplate views:BestScoresPage}" />
+        <ShellContent Title="User Admin" ContentTemplate="{DataTemplate views:UserAdminPage}" />
+        <ShellContent Title="User Admin" ContentTemplate="{DataTemplate views:UserQuestionsPage}" />
+    </FlyoutItem>
 
 </Shell>
