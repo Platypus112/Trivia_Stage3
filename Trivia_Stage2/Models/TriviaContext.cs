@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace Trivia_Stage1.Models;
+namespace Trivia_Stage2.Models;
 
 public partial class TriviaContext : DbContext
 {

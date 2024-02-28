@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Trivia_Stage1.Models;
-using Xamarin.Google.Crypto.Tink.Signature;
+using Trivia_Stage2.Models;
 
 namespace Trivia_Stage2.Services
 {
     public class Service
     {
+        public Player LoggedPlayer { get; private set; }
         public List<Player> Players { get { return playerService.Players; } private set { this.playerService.Players = value; } }
         private PlayerService playerService;
         public List<Question> Questions { get { return questionService.Questions; } private set { this.questionService.Questions = value; } }
@@ -27,6 +27,18 @@ namespace Trivia_Stage2.Services
             questionStatusService = new QuestionStatusService();
             rankService = new RankService();
             subjectService = new SubjectService();
+        }
+        public bool LogPlayer(string playerName,string password)
+        {
+            try
+            {
+                LoggedPlayer = Players.Where(x => x.PlayerName == playerName && x.Password == password).FirstOrDefault();
+                return LoggedPlayer != null;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
     internal class PlayerService
