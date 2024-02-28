@@ -48,7 +48,15 @@ namespace Trivia_Stage2.Services
                 return false;
             }
         }
-    
+        public async void ApproveQuestion(Question q)
+        {
+            q.Subject.SubjectId = 2;
+        }
+
+        public async void DeclineeQuestion(Question q)
+        {
+            q.Subject.SubjectId = 0;
+        }
 
         public List<Question> GetPendingQuestions()
         {
