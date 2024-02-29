@@ -6,7 +6,6 @@
     xmlns:Model="clr-namespace:Trivia_Stage2.Models"
     xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
     Title="ApproveQuestionsPage"
-    
     x:DataType="viewModel:ApproveQuestionsPageViewModel">
 
     <!--<CollectionView
@@ -43,25 +42,17 @@
 
     <ScrollView Margin="10">
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <Grid RowDefinitions="*,*">
+
+
+
 
 
 
             <CollectionView
                 x:Name="collection"
-                Grid.Row="3"
+                Grid.Row="1"
                 Grid.Column="0"
-                Grid.ColumnSpan="2"
                 Margin="3"
                 ItemsSource="{Binding PendingQuestions}"
                 SelectedItem="{Binding SelectedPendingQuestion}"
@@ -72,28 +63,23 @@
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItem
-                                    Command="{Binding Source={x:Reference collection}, Path=BindingContext.RemoveMonkeyCommand}"
+                                    Command="{Binding Source={x:Reference collection}, Path=BindingContext.DeclineQuestionCommand}"
                                     CommandParameter="{Binding .}"
                                     IconImageSource="https://cdn-icons-png.flaticon.com/512/3334/3334328.png" />
+                                <SwipeItem
+                                    Command="{Binding Source={x:Reference collection}, Path=BindingContext.ApproveQuestionCommand}"
+                                    CommandParameter="{Binding .}"
+                                    IconImageSource="check.png" />
                             </SwipeView.RightItems>
+
                             <Border
                                 Margin="4,5"
                                 Padding="4"
-                                HeightRequest="130">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Margin="3">
+                                HeightRequest="200">
+                                <Grid RowDefinitions="*,*,*,*,*,*,*">
+
+
+                                    <Label Grid.Row="0" Margin="3">
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <Span Text="Id: " />
@@ -102,10 +88,7 @@
                                         </Label.FormattedText>
                                     </Label>
 
-                                    <Label
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        Margin="3">
+                                    <Label Grid.Row="1" Margin="3">
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <Span Text="Subject: " />
@@ -113,21 +96,72 @@
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
+                                    <Label Grid.Row="2" Margin="3">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Text: " />
+                                                <Span Text="{Binding QuestionText}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="3" Margin="3">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Correct Answer: " />
+                                                <Span Text="{Binding Correct}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="4" Margin="3">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Wrong Answer1: " />
+                                                <Span Text="{Binding Incorrect1}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="5" Margin="3">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Wrong Answer2: " />
+                                                <Span Text="{Binding Incorrect2}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="6" Margin="3">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Wrong Answer2: " />
+                                                <Span Text="{Binding Incorrect3}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
 
 
-                                   
+
                                 </Grid>
+
+
                             </Border>
 
                         </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <CollectionView.EmptyView>
-                    <Label Text="No Pending Questions" />
+                    <StackLayout>
+                        <Label HorizontalOptions="CenterAndExpand" Text="נגמרו השאלות" />
+                        <Image
+                            Aspect="AspectFit"
+                            HeightRequest="80"
+                            HorizontalOptions="CenterAndExpand"
+                            Source="goal.png"
+                            WidthRequest="80" />
+                    </StackLayout>
                 </CollectionView.EmptyView>
             </CollectionView>
-        </Grid>
 
+
+        </Grid>
     </ScrollView>
 
 
