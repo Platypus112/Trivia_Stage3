@@ -7,10 +7,21 @@
              x:DataType="viewModel:BestScoresPageViewModel"
              
              Title="BestScoresPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView Margin="10">
+        <HorizontalStackLayout>
+            <Button Text="Refresh" Command="{Binding Reload}"/>
+            <Entry Text="{Binding SearchBar}"/>
+            <Button Text="Search" Command="{Binding Search}"/>
+            <CollectionView ItemsSource="{Binding players}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding PlayerName}" />
+                            <Label Text="{Binding Points}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </HorizontalStackLayout>
+    </ScrollView>
 </ContentPage>
