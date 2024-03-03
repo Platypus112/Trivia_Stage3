@@ -42,7 +42,7 @@
 
     <ScrollView Margin="10">
 
-        <Grid RowDefinitions="*,*">
+        <Grid RowDefinitions="*">
 
 
 
@@ -51,7 +51,7 @@
 
             <CollectionView
                 x:Name="collection"
-                Grid.Row="1"
+                Grid.Row="0"
                 Grid.Column="0"
                 Margin="3"
                 ItemsSource="{Binding PendingQuestions}"

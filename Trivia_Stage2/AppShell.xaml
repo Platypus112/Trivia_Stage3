@@ -9,18 +9,31 @@
  
         
         <ShellContent 
+            Route="LoginPage"
                 Title="Login Page"
                 IsEnabled="False"
                 FlyoutItemIsVisible="False"
                 ContentTemplate="{DataTemplate views:LoginPage}"/>
         
-        <ShellContent Title="Approve Quesitons" ContentTemplate="{DataTemplate views:ApproveQuestionsPage}" />
+        <ShellContent
+            Route="ApproveQuestionsPage"
+            Title="Approve Quesitons"
+            ContentTemplate="{DataTemplate views:ApproveQuestionsPage}" />
         
-        <ShellContent Title="Best Scores" ContentTemplate="{DataTemplate views:BestScoresPage}" />
+        <ShellContent
+            Route="BestScoresPage"
+            Title="Best Scores"
+            ContentTemplate="{DataTemplate views:BestScoresPage}" />
         
-        <ShellContent Title="User Admin" ContentTemplate="{DataTemplate views:UserAdminPage}" />
+        <ShellContent 
+            Route="UserAdminPage"
+            Title="User Admin" 
+            ContentTemplate="{DataTemplate views:UserAdminPage}" />
         
-        <ShellContent Title="User Questions" ContentTemplate="{DataTemplate views:UserQuestionsPage}" />
+        <ShellContent 
+            Route="UserQuestionsPage"
+            Title="User Questions" 
+            ContentTemplate="{DataTemplate views:UserQuestionsPage}" />
 
 
 </Shell>
