@@ -12,7 +12,7 @@
             <Button Text="Refresh" Command="{Binding Reload}"/>
             <Entry Text="{Binding SearchBar}"/>
             <Button Text="Search" Command="{Binding Search}"/>
-            <CollectionView ItemsSource="{Binding players}">
+            <CollectionView ItemsSource="{Binding players}" SelectedItem="{Binding SelectedPlayer}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
@@ -22,6 +22,11 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+			<StackLayout>
+				<Label Text="Selected Player Details" FontAttributes="Bold" />
+				<Label Text="{Binding SelectedPlayer.Rank}" />
+				<Label Text="{Binding SelectedPlayer.PlayerId}" />
+			</StackLayout>
         </HorizontalStackLayout>
     </ScrollView>
 </ContentPage>
