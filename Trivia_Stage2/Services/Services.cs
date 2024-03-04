@@ -30,6 +30,20 @@ namespace Trivia_Stage2.Services
             AddSubjectsToQuestions();
             AddRanksToPlayers();
             AddStatusesToQuestions();
+            AddPlayerToQuestions();
+        }
+
+        private async void AddPlayerToQuestions()
+        {
+            try
+            {
+                foreach (Question q in Questions)
+                {
+                    q.Player = Players.Where(x => x.PlayerId == q.PlayerId).FirstOrDefault();
+                }
+            }
+            catch(Exception e)
+            { }
         }
         private async void AddStatusesToQuestions()
         {
@@ -95,6 +109,7 @@ namespace Trivia_Stage2.Services
             Players = new List<Player>();
             Players.Add(new Player()
             {
+                PlayerId = 1,
                 Email = "Admin@yahoo.com",
                 Password = "1234",
                 PlayerName = "Admin",
@@ -103,6 +118,7 @@ namespace Trivia_Stage2.Services
             });
             Players.Add(new Player()
             {
+                PlayerId = 2,
                 Email = "idancar7@gmail.com",
                 Password = "4444",
                 PlayerName = "joe4",

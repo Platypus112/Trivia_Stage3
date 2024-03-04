@@ -23,12 +23,16 @@ namespace Trivia_Stage2.ViewModels
         private bool isRefreshing;
         public bool IsRefreshing { get => isRefreshing; set { isRefreshing = value; OnPropertyChanged(); } }
         public ICommand FilterByStatus { get; private set; }
+        public ICommand LoadQuestionsCommand { get; private set; }
 
         public UserQuestionsPageViewModel(Service service_)
         {
+            IsRefreshing = false;
             service = service_;
             Questions = new ObservableCollection<Question>(service.GetQuestionsByPlayer(service.LoggedPlayer.PlayerId));
             FilterByStatus = new Command<string>((x) => FilterStatus(x));
+            LoadQuestionsCommand = new Command(async () => await LoadQuestions());
+            LoadQuestions();
         }
         private void FilterStatus(string filter)
         {
@@ -51,7 +55,17 @@ namespace Trivia_Stage2.ViewModels
             {
                 Questions.Add(q);
             }
-
+        }
+        private async Task LoadQuestions()
+        {
+            IsRefreshing = true;
+            questionkeeper = service.Questions;
+            Questions.Clear();
+            foreach (Question q in questionkeeper)
+            {
+                Questions.Add(q);
+            }
+            IsRefreshing = false;
         }
     }
 }

@@ -44,7 +44,7 @@
                                 Margin="4,5"
                                 Padding="4"
                                 HeightRequest="200">
-                                <Grid RowDefinitions="*,*,*,*,*,*,*">
+                                <Grid RowDefinitions="*,*,*,*,*,*,*,*">
 
 
                                     <Label Grid.Row="0" Margin="3">
@@ -83,7 +83,7 @@
                                     <Label Grid.Row="4" Margin="3">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="Wrong Answer1: " />
+                                                <Span Text="1st Wrong Answer: " />
                                                 <Span Text="{Binding Incorrect1}" />
                                             </FormattedString>
                                         </Label.FormattedText>
@@ -91,7 +91,7 @@
                                     <Label Grid.Row="5" Margin="3">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="Wrong Answer2: " />
+                                                <Span Text="2nd Wrong Answer: " />
                                                 <Span Text="{Binding Incorrect2}" />
                                             </FormattedString>
                                         </Label.FormattedText>
@@ -99,8 +99,17 @@
                                     <Label Grid.Row="6" Margin="3">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="Wrong Answer2: " />
+                                                <Span Text="3rd Wrong Answer: " />
                                                 <Span Text="{Binding Incorrect3}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <Label Grid.Row="7" Margin="3">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Player: " />
+                                                <Span Text="{Binding Player.PlayerName}" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>

@@ -7,23 +7,135 @@
     xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
     Title="User Questions Page"
     x:DataType="viewModel:UserQuestionsPageViewModel">
-    <Grid ColumnDefinitions="3*,2*" RowDefinitions="1*,1*,10*">
-        <Entry
-            x:Name="filter"
-            Grid.Row="0"
-            Grid.Column="0"
-            Margin="10"
-            Placeholder="Enter Status" />
-        <Button
-            Grid.Row="0"
-            Grid.Column="2"
-            Margin="10"
-            Command="{Binding FilterByStatus}"
-            CommandParameter="{Binding Text, Source={x:Reference filter}}"
-            BackgroundColor="White"
-            BorderColor="Black"
-            BorderWidth="3"
-            Text="Filter by Status"
-            TextColor="Black" />
-    </Grid>
+    <RefreshView Command="{Binding LoadQuestionsCommand}" IsRefreshing="{Binding IsRefreshing}">
+        <Grid ColumnDefinitions="3*,2*" RowDefinitions="1*,10*">
+            <Entry
+                x:Name="filter"
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="10"
+                Placeholder="Enter Status" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="2"
+                Margin="10"
+                BackgroundColor="White"
+                BorderColor="Black"
+                BorderWidth="3"
+                Command="{Binding FilterByStatus}"
+                CommandParameter="{Binding Text, Source={x:Reference filter}}"
+                Text="Filter by Status"
+                TextColor="Black" />
+            <CollectionView
+                x:Name="collection"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Margin="3"
+                ItemsSource="{Binding Questions}"
+                SelectedItem="{Binding SelectedQuestion}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Model:Question">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItem
+                                    Command="{Binding Source={x:Reference collection}, Path=BindingContext.DeclineQuestionCommand}"
+                                    CommandParameter="{Binding .}"
+                                    IconImageSource="https://cdn-icons-png.flaticon.com/512/3334/3334328.png" />
+                                <SwipeItem
+                                    Command="{Binding Source={x:Reference collection}, Path=BindingContext.ApproveQuestionCommand}"
+                                    CommandParameter="{Binding .}"
+                                    IconImageSource="check.png" />
+                            </SwipeView.RightItems>
+
+                            <Border
+                                Margin="4,5"
+                                Padding="4"
+                                HeightRequest="200">
+                                <Grid RowDefinitions="*,*,*,*,*,*,*">
+
+
+                                    <Label Grid.Row="0" Margin="3">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Id: " />
+                                                <Span Text="{Binding QuestionId}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <Label Grid.Row="1" Margin="3">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Subject: " />
+                                                <Span Text="{Binding Subject.SubjectName}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="2" Margin="3">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Text: " />
+                                                <Span Text="{Binding QuestionText}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="3" Margin="3">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Correct Answer: " />
+                                                <Span Text="{Binding Correct}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="4" Margin="3">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="1st Wrong Answer: " />
+                                                <Span Text="{Binding Incorrect1}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="5" Margin="3">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="2nd Wrong Answer: " />
+                                                <Span Text="{Binding Incorrect2}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="6" Margin="3">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="3rd Wrong Answer: " />
+                                                <Span Text="{Binding Incorrect3}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+
+
+                                </Grid>
+
+
+                            </Border>
+
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label HorizontalOptions="CenterAndExpand" Text="נגמרו השאלות" />
+                        <Image
+                            Aspect="AspectFit"
+                            HeightRequest="80"
+                            HorizontalOptions="CenterAndExpand"
+                            Source="goal.png"
+                            WidthRequest="80" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </Grid>
+    </RefreshView>
 </ContentPage>
