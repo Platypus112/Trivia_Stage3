@@ -32,6 +32,7 @@ namespace Trivia_Stage2.ViewModels
         public ICommand RefreshCommand { get; private set; }
         public ICommand SortByRankCommand {  get; private set; }
         public ICommand ResetPlayerPointsCommand { get; private set; }
+        public ICommand RemovePlayerCommand {  get; private set; }
         
         public UserAdminPageViewModel(Service service_)
         {
@@ -39,7 +40,9 @@ namespace Trivia_Stage2.ViewModels
             IsRefreshing = false;
             AddPlayerCommand = new Command(async ()=>AddPlayer(),()=>!EmailEntry.IsNullOrEmpty()&&!PasswordEntry.IsNullOrEmpty()&&!PlayerNameEntry.IsNullOrEmpty());
             RefreshCommand = new Command(async () => Refresh());
-
+            SortByRankCommand = new Command(async ()=>SortByRank());
+            ResetPlayerPointsCommand = new Command(async (Object obj) => ResetPlayerPoints(obj));
+            RemovePlayerCommand = new Command(async (Object obj) => RemovePlayer(obj));
             Refresh();
         }
         private async void RemovePlayer(Object obj)
@@ -88,7 +91,7 @@ namespace Trivia_Stage2.ViewModels
         }
         private async void SortByRank()
         {
-            Players = new ObservableCollection<Player>(service.Players.OrderBy(x => x.RankId));
+            Players = new ObservableCollection<Player>(service.Players.OrderBy(x => -x.RankId));
         }
         private async void AddPlayer()
         {

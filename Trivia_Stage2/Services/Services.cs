@@ -185,6 +185,15 @@ namespace Trivia_Stage2.Services
                 RankId = 1,
                 Points = 0,
             });
+            Players.Add(new Player()
+            {
+                PlayerId = 3,
+                Email = "idancar7@gmail.com",
+                Password = "55555",
+                PlayerName = "joe5",
+                RankId = 2,
+                Points = 50,
+            });
         }
     }
     internal class QuestionService
