@@ -10,7 +10,8 @@
     <ScrollView Margin="10">
         <HorizontalStackLayout>
             <Button Text="Refresh" Command="{Binding Reload}"/>
-            <Entry Text="{Binding SearchBar}"/>
+            <Picker SelectedIndex="{Binding Source={x:Reference SelectedRank}}" Title="Choose a rank" x:Name="Picker" x:DataType="Model:Rank" ItemDisplayBinding="{Binding RankName}">
+            </Picker>
             <Button Text="Search" Command="{Binding Search}"/>
             <CollectionView ItemsSource="{Binding players}" SelectedItem="{Binding SelectedPlayer}">
                 <CollectionView.ItemTemplate >
@@ -27,8 +28,6 @@
                 <CollectionView.EmptyView>
                     <Label Text="No results, please refresh"/>
                 </CollectionView.EmptyView>
-
-
             </CollectionView>
 			<StackLayout>
 				<Label Text="Selected Player Details" FontAttributes="Bold" />

@@ -95,6 +95,10 @@ namespace Trivia_Stage2.Services
         {
             return Questions.Where(x => x.StatusId == 1).ToList();
         }
+        public List<Question> GetQuestionsByPlayer(int id)
+        {
+            return Questions.Where(x => x.PlayerId == id).ToList();
+        }
     }
     internal class PlayerService
     {
