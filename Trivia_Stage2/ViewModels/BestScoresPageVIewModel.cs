@@ -15,7 +15,7 @@ namespace Trivia_Stage2.ViewModels
         public bool IsReloading;
         public ICommand Reload { get; set; }
         public ICommand Search { get; set; }
-        public string SearchBar {  get; set; }
+        public string SearchBar {get; set;}
         public bool IsOrdered;
         public Player SelectedPlayer { get { return selectedPlayer; } set { selectedPlayer = value; OnPropertyChanged(); } }
         private Player selectedPlayer;

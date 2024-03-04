@@ -30,6 +30,15 @@ namespace Trivia_Stage2.Services
             AddSubjectsToQuestions();
             AddRanksToPlayers();
             AddStatusesToQuestions();
+            AddPlayerToQuestion();
+        }
+
+        private async void AddPlayerToQuestion()
+        {
+            foreach (Question q in Questions)
+            {
+               q.Player  = Players.Where(x => x.PlayerId == q.PlayerId).FirstOrDefault();
+            }
         }
         private async void AddStatusesToQuestions()
         {
@@ -182,9 +191,9 @@ namespace Trivia_Stage2.Services
             {
                 QuestionId = 6,
                 PlayerId = 1,
-                Correct = "90 minutes",
+                Correct = "92 minutes",
                 Incorrect1 = "43 minutes",
-                Incorrect2 = "92 minutes",
+                Incorrect2 = "90 minutes",
                 Incorrect3 = "110 minutes",
                 QuestionText = "How long is the trolls3 movie?",
                 SubjectId = 1,
