@@ -15,7 +15,7 @@ namespace Trivia_Stage2.ViewModels
         public bool IsReloading;
         public ICommand Reload { get; set; }
         public ICommand Search { get; set; }
-        public string SearchBar {get; set;}
+        public string SearchBar {  get; set; }
         public bool IsOrdered;
         public Player SelectedPlayer { get { return selectedPlayer; } set { selectedPlayer = value; OnPropertyChanged(); } }
         private Player selectedPlayer;
@@ -53,9 +53,10 @@ namespace Trivia_Stage2.ViewModels
         }
         public async Task TaskSearch()
         {
-            int search = SearchBar;
-                players = new ObservableCollection<Player>(players.Where(player => player.RankId == search));
-            
+            if (int.TryParse(SearchBar, out int search))
+            {
+                players = new ObservableCollection<Player>(players.Where(player => player.Points == search));
+            }
         }
     }
 }
