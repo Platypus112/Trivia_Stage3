@@ -59,7 +59,7 @@ namespace Trivia_Stage2.ViewModels
         private async Task LoadQuestions()
         {
             IsRefreshing = true;
-            questionkeeper = service.Questions;
+            questionkeeper = service.Questions.Where(x => x.Player == service.LoggedPlayer).ToList();
             Questions.Clear();
             foreach (Question q in questionkeeper)
             {
