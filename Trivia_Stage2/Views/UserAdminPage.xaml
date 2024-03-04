@@ -1,15 +1,53 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Trivia_Stage2.Views.UserAdminPage"
-             xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
-             xmlns:Model="clr-namespace:Trivia_Stage2.Models"
-             x:DataType="viewModel:UserAdminPageViewModel"
-             Title="UserAdminPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="Trivia_Stage2.Views.UserAdminPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Model="clr-namespace:Trivia_Stage2.Models"
+    xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
+    Title="UserAdminPage"
+    x:DataType="viewModel:UserAdminPageViewModel">
+    <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.4*" />
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid
+                Grid.Row="0"
+                Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions />
+                <Label Grid.Row="0" Text="{Binding ErrorMsg}" TextColor="{Binding ErrorColor}" />
+                <Entry Grid.Row="1" Text="{Binding PlayerNameEntry}" Placeholder="Player Name" PlaceholderColor="Grey" />
+                <Entry  Grid.Row="2" Text="{Binding EmailNameEntry}" Placeholder="email" PlaceholderColor="Grey" />
+                <Entry  Grid.Row="3" Text="{Binding PasswordEntry}" Placeholder="Password" PlaceholderColor="Grey" IsPassword="True" />
+                <Button Command="{Binding AddPlayerCommand}" Text="Add Player"/>
+            </Grid>
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Command="{Binding SortByRankCommand}"
+                Text="Sort by rank"
+                />
+            <CollectionView
+                ItemsSource="{Binding Players}"
+                Grid.Row="1"
+                Grid.Column="0">
+                <CollectionView.ItemTemplate>
+                    
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </RefreshView>
 </ContentPage>
