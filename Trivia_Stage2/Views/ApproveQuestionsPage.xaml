@@ -136,7 +136,7 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
- <Label Grid.Row="7" Margin="3">
+                                <Label Grid.Row="7" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="Player: " />
