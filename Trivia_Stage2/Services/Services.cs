@@ -28,6 +28,22 @@ namespace Trivia_Stage2.Services
             rankService = new RankService();
             subjectService = new SubjectService();
             AddSubjectsToQuestions();
+            AddRanksToPlayers();
+            AddStatusesToQuestions();
+        }
+        private async void AddStatusesToQuestions()
+        {
+            foreach (Question q in Questions)
+            {
+                q.Status = QuestionStatuses.Where(x => x.StatusId == q.StatusId).FirstOrDefault();
+            }
+        }
+        private async void AddRanksToPlayers()
+        {
+            foreach(Player p in Players)
+            {
+                p.Rank = Ranks.Where(x => x.RankId == p.RankId).FirstOrDefault();
+            }
         }
         private async void AddSubjectsToQuestions()
         {

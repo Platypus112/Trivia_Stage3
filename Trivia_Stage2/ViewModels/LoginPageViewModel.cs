@@ -36,7 +36,7 @@ namespace Trivia_Stage2.ViewModels
             }
         }
 
-        private void Login()
+        private async void Login()
         {
             if (service.LogPlayer(playerName,password))
             {
@@ -51,7 +51,7 @@ namespace Trivia_Stage2.ViewModels
                 NotifColor = Colors.Red;
             }
         }
-        private void Cancel()
+        private async void Cancel()
         {
             Notif = string.Empty;
             PlayerName = string.Empty;

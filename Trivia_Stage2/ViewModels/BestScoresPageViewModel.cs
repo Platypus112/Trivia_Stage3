@@ -36,7 +36,7 @@ namespace Trivia_Stage2.ViewModels
             if (IsReloading) return;
             IsReloading=true;
             players.Clear();
-            foreach (Player plr in service.players)
+            foreach (Player plr in service.Players)
                 players.add(plr);
             if (IsOrdered)
             {
