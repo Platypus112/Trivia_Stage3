@@ -17,7 +17,7 @@ namespace Trivia_Stage2.ViewModels
         public ICommand Search { get; set; }
         public string SearchBar;
         public bool IsOrdered;
-        public Player SelectedPlayer { get { return selectedPlayer; } set { count = value; OnPropertyChanged(); } }
+        public Player SelectedPlayer { get { return selectedPlayer; } set { selectedPlayer = value; OnPropertyChanged(); } }
         private Player selectedPlayer;
         public ObservableCollection<Player> players { get; private set; }
 
@@ -36,16 +36,16 @@ namespace Trivia_Stage2.ViewModels
             if (IsReloading) return;
             IsReloading=true;
             players.Clear();
-            foreach (Player plr in service.players)
-                players.add(plr);
+            foreach (Player plr in service.Players)
+                players.Add(plr);
             if (IsOrdered)
             {
-                players = new ObservableCollection<Player>(players.OrderByDescending(Player p => p.Points));
+                players = new ObservableCollection<Player>(players.OrderByDescending(p => p.Points));
                 IsOrdered = false;
             }
             else
             {
-                players = new ObservableCollection<Player>(players.OrderByAscending(Player p => p.Points));
+                players = new ObservableCollection<Player>(players.OrderBy(p => p.Points));
                 IsOrdered = true;
             }
             IsReloading = false;
@@ -55,7 +55,7 @@ namespace Trivia_Stage2.ViewModels
         {
             if (int.TryParse(SearchBar, out int search))
             {
-                players = new ObservableCollection<Player>(players.Where(Player player => player.Points == search));
+                players = new ObservableCollection<Player>(players.Where(player => player.Points == search));
             }
         }
     }
