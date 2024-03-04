@@ -7,74 +7,132 @@
     xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
     Title="UserAdminPage"
     x:DataType="viewModel:UserAdminPageViewModel">
-    <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.4*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0">
+    <ScrollView>
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+            <Grid Margin="3">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="0.4*" />
                     <RowDefinition Height="0.1*" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions />
-                <Label
-                    Grid.Row="0"
-                    Text="{Binding ErrorMsg}"
-                    TextColor="{Binding ErrorColor}" />
-                <Entry
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0" Margin="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions />
+                    <Label
+                        Grid.Row="0"
+                        Text="{Binding ErrorMsg}"
+                        TextColor="{Binding ErrorColor}" />
+                    <Entry
+                        Grid.Row="1"
+                        Placeholder="Player Name"
+                        PlaceholderColor="Grey"
+                        Text="{Binding PlayerNameEntry}" />
+                    <Entry
+                        Grid.Row="2"
+                        Placeholder="email"
+                        PlaceholderColor="Grey"
+                        Text="{Binding EmailEntry}" />
+                    <Entry
+                        Grid.Row="3"
+                        IsPassword="True"
+                        Placeholder="Password"
+                        PlaceholderColor="Grey"
+                        Text="{Binding PasswordEntry}" />
+                    <Button Grid.Row="4" Command="{Binding AddPlayerCommand}" Text="Add Player" />
+                </Grid>
+                <Button
                     Grid.Row="1"
-                    Placeholder="Player Name"
-                    PlaceholderColor="Grey"
-                    Text="{Binding PlayerNameEntry}" />
-                <Entry
+                    Grid.Column="0"
+                    Command="{Binding SortByRankCommand}"
+                    Text="Sort by rank" />
+                <CollectionView
                     Grid.Row="2"
-                    Placeholder="email"
-                    PlaceholderColor="Grey"
-                    Text="{Binding EmailNameEntry}" />
-                <Entry
-                    Grid.Row="3"
-                    IsPassword="True"
-                    Placeholder="Password"
-                    PlaceholderColor="Grey"
-                    Text="{Binding PasswordEntry}" />
-                <Button Command="{Binding AddPlayerCommand}" Text="Add Player" />
+                    Grid.Column="0"
+                    x:Name="collection"
+                    Margin="3"
+                    ItemsSource="{Binding Players}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="Model:Player">
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItem
+                                        Command="{Binding Source={x:Reference collection}, Path=BindingContext.RemovePlayerCommand}"
+                                        CommandParameter="{Binding .}"
+                                        IconImageSource="https://i.fbcd.co/products/resized/resized-750-500/de18ae7d25cea00a569f391100ae56d990105791a99a2d42f35d84477a869d68.jpg" />
+                                    <SwipeItem
+                                        Command="{Binding Source={x:Reference collection}, Path=BindingContext.ResetPlayerPointsCommand}"
+                                        CommandParameter="{Binding .}"
+                                        IconImageSource="https://cdn-icons-png.flaticon.com/512/2618/2618245.png" />
+                                </SwipeView.RightItems>
+                                <Border
+                                Margin="4,5"
+                                Padding="4"
+                                HeightRequest="200">
+                                    <VerticalStackLayout>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Player id: "/>
+                                                    <Span Text="{Binding PlayerId}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Player name: "/>
+                                                    <Span Text="{Binding PlayerName}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Email: "/>
+                                                    <Span Text="{Binding Email}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Points: "/>
+                                                    <Span Text="{Binding Points}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Rank: "/>
+                                                    <Span Text="{Binding Rank.RankName}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Password: "/>
+                                                    <Span Text="{Binding Password}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </Grid>
-            <Button
-                Grid.Row="1"
-                Grid.Column="0"
-                Command="{Binding SortByRankCommand}"
-                Text="Sort by rank" />
-            <CollectionView
-                Grid.Row="1"
-                Grid.Column="0"
-                x:Name="collection"
-                ItemsSource="{Binding Players}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="Model:Player">
-                        <SwipeView>
-                            <SwipeView.RightItems>
-                                <SwipeItem
-                                    Command="{Binding Source={x:Reference collection}, Path=BindingContext.RemovePlayerCommand}"
-                                    CommandParameter="{Binding .}"
-                                    IconImageSource="https://i.fbcd.co/products/resized/resized-750-500/de18ae7d25cea00a569f391100ae56d990105791a99a2d42f35d84477a869d68.jpg" />
-                                <SwipeItem
-                                    Command="{Binding Source={x:Reference collection}, Path=BindingContext.ResetPlayerPointsCommand}"
-                                    CommandParameter="{Binding .}"
-                                    IconImageSource="https://cdn-icons-png.flaticon.com/512/2618/2618245.png" />
-                            </SwipeView.RightItems>
-                        </SwipeView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
-    </RefreshView>
+        </RefreshView>
+    </ScrollView>
 </ContentPage>

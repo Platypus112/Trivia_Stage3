@@ -1,5 +1,4 @@
-﻿using Java.Lang;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,7 +43,7 @@ namespace Trivia_Stage2.Services
                     q.Player = Players.Where(x => x.PlayerId == q.PlayerId).FirstOrDefault();
                 }
             }
-            catch(Exception e)
+            catch
             { }
         }
         private async void AddStatusesToQuestions()
@@ -83,7 +82,7 @@ namespace Trivia_Stage2.Services
                     Points = 0,
                     RankId = 1,
                     Rank= Ranks.Where(x => x.RankId == 1).FirstOrDefault(),
-                    PlayerId=Players.OrderByDescending(x => x.Rank).FirstOrDefault().PlayerId+1,
+                    PlayerId=Players.OrderByDescending(x => x.PlayerId).FirstOrDefault().PlayerId+1,
                 }) ;
                 return true;
             }

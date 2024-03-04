@@ -42,13 +42,35 @@ namespace Trivia_Stage2.ViewModels
 
             Refresh();
         }
+        private async void RemovePlayer(Object obj)
+        {
+            try
+            {
+                if(service.RemovePlayer((Player)obj))
+                {
+                    ErrorMsg = "Player deleted successfuly";
+                    ErrorColor = Color.Parse("Green");
+                }
+                else
+                {
+                    ErrorMsg = "Deleting player didn't work";
+                    ErrorColor = Color.Parse("Red");
+                }
+                Refresh();
+            }
+            catch
+            {
+                ErrorMsg = "Deleting player didn't work";
+                ErrorColor = Color.Parse("Red");
+            }
+        }
         private async void ResetPlayerPoints(Object obj)
         {
             try
             {
                 if(service.ResetPlayerPoints((Player)obj))
                 {
-                    ErrorMsg = "Player points reset successfuly successfuly";
+                    ErrorMsg = "Player points reset successfuly";
                     ErrorColor = Color.Parse("Green");
                 }
                 else
