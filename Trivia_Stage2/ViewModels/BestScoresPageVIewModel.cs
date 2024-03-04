@@ -15,12 +15,13 @@ namespace Trivia_Stage2.ViewModels
         public bool IsReloading;
         public ICommand Reload { get; set; }
         public ICommand Search { get; set; }
-        public string SearchBar {  get; set; }
         public bool IsOrdered;
+        public ObservableCollection<Rank> Ranks { get; set; }
         public Player SelectedPlayer { get { return selectedPlayer; } set { selectedPlayer = value; OnPropertyChanged(); } }
         private Player selectedPlayer;
         public ObservableCollection<Player> players { get; private set; }
-
+        public Rank SelectedRank { get {return selectedRank; } set { selectedRank = value; OnPropertyChanged(); } }
+        private Rank selectedRank;
         public BestScoresPageViewModel(Service service_)
         {
             IsOrdered = false;
@@ -30,6 +31,7 @@ namespace Trivia_Stage2.ViewModels
             SelectedPlayer=new Player();
             Reload=new Command(async () => await TaskReload());
             Search = new Command(async () => await TaskSearch());
+            Ranks = new ObservableCollection<Rank>(service.Ranks);
         }
         public async Task TaskReload()
         {
@@ -53,7 +55,14 @@ namespace Trivia_Stage2.ViewModels
         }
         public async Task TaskSearch()
         {
-            
+            try
+            {
+                players = new ObservableCollection<Player>(players.Where(player => player.RankId == SelectedRank.RankId));
+            }
+            catch(Exception ex) 
+            {
+                
+            }
         }
     }
 }
