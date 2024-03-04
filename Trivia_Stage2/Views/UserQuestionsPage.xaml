@@ -8,7 +8,7 @@
     Title="User Questions Page"
     x:DataType="viewModel:UserQuestionsPageViewModel">
     <RefreshView Command="{Binding LoadQuestionsCommand}" IsRefreshing="{Binding IsRefreshing}">
-        <Grid ColumnDefinitions="3*,2*" RowDefinitions="1*,10*">
+        <Grid ColumnDefinitions="3*,2*,*" RowDefinitions="1*,10*">
             <Entry
                 x:Name="filter"
                 Grid.Row="0"
@@ -17,20 +17,26 @@
                 Placeholder="Enter Status" />
             <Button
                 Grid.Row="0"
-                Grid.Column="2"
+                Grid.Column="1"
                 Margin="10"
                 BackgroundColor="White"
                 BorderColor="Black"
                 BorderWidth="3"
-                Command="{Binding FilterByStatus}"
+                Command="{Binding FilterByStatusCommand}"
                 CommandParameter="{Binding Text, Source={x:Reference filter}}"
                 Text="Filter by Status"
                 TextColor="Black" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="2"
+                ImageSource="edit.png"
+                Margin="10"
+                Command="{Binding NavigateEditCommand}"/>
             <CollectionView
                 x:Name="collection"
                 Grid.Row="1"
                 Grid.Column="0"
-                Grid.ColumnSpan="2"
+                Grid.ColumnSpan="3"
                 Margin="3"
                 ItemsSource="{Binding Questions}"
                 SelectedItem="{Binding SelectedQuestion}"

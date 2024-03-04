@@ -12,6 +12,7 @@ namespace Trivia_Stage2
             Routing.RegisterRoute("UserAdminPage", typeof(UserAdminPage));
             Routing.RegisterRoute("UserQuestionsPage", typeof(UserQuestionsPage));
             Routing.RegisterRoute("LoginPage", typeof(LoginPage));
+            Routing.RegisterRoute("EditQuestionsPage",typeof(EditQuestionsPage));
             InitializeComponent();
             
         }

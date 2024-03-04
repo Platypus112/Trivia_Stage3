@@ -26,13 +26,15 @@ namespace Trivia_Stage2
             .AddTransient<UserAdminPage>()
             .AddTransient<UserQuestionsPage>()
             .AddTransient<LoginPage>()
+            .AddTransient<ApproveQuestionsPage>()
 
             //Registering ViewModels
             .AddTransient<ApproveQuestionsPageViewModel>()
             .AddTransient<BestScoresPageViewModel>()
             .AddTransient<UserAdminPageViewModel>()
             .AddTransient<UserQuestionsPageViewModel>()
-            .AddTransient<LoginPageViewModel>();
+            .AddTransient<LoginPageViewModel>()
+            .AddTransient<ApproveQuestionsPageViewModel>();
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

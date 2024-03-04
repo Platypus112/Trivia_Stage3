@@ -22,17 +22,26 @@ namespace Trivia_Stage2.ViewModels
         public string Text { get => text; set {  text = value; OnPropertyChanged(); } }
         private bool isRefreshing;
         public bool IsRefreshing { get => isRefreshing; set { isRefreshing = value; OnPropertyChanged(); } }
-        public ICommand FilterByStatus { get; private set; }
+        public ICommand FilterByStatusCommand { get; private set; }
         public ICommand LoadQuestionsCommand { get; private set; }
+        public ICommand NavigateEditCommand { get; private set; }
 
         public UserQuestionsPageViewModel(Service service_)
         {
             IsRefreshing = false;
             service = service_;
             Questions = new ObservableCollection<Question>(service.GetQuestionsByPlayer(service.LoggedPlayer.PlayerId));
-            FilterByStatus = new Command<string>((x) => FilterStatus(x));
+            FilterByStatusCommand = new Command<string>((x) => FilterStatus(x));
             LoadQuestionsCommand = new Command(async () => await LoadQuestions());
+            NavigateEditCommand = new Command(async () => await NavToEditPage());
             LoadQuestions();
+        }
+        private async Task NavToEditPage()
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data.Add("Question", SelectedQuestion);
+            await AppShell.Current.GoToAsync("EditQuestionsPage", data);
+            SelectedQuestion = null;
         }
         private void FilterStatus(string filter)
         {
@@ -59,7 +68,7 @@ namespace Trivia_Stage2.ViewModels
         private async Task LoadQuestions()
         {
             IsRefreshing = true;
-            questionkeeper = service.Questions.Where(x => x.Player == service.LoggedPlayer).ToList();
+            questionkeeper = service.Questions.Where(x => x.PlayerId == service.LoggedPlayer.PlayerId).ToList();
             Questions.Clear();
             foreach (Question q in questionkeeper)
             {
