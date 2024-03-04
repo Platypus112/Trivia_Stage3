@@ -44,13 +44,12 @@ namespace Trivia_Stage2.Services
                     q.Player = Players.Where(x => x.PlayerId == q.PlayerId).FirstOrDefault();
                 }
             }
-            catch(Exception ex)
+            catch
             {
 
             }
         }
     
-        }
         
         private async void AddStatusesToQuestions()
         {
@@ -90,6 +89,27 @@ namespace Trivia_Stage2.Services
                     Rank= Ranks.Where(x => x.RankId == 1).FirstOrDefault(),
                     PlayerId=Players.OrderByDescending(x => x.Rank).FirstOrDefault().PlayerId+1,
                 }) ;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool ResetPlayerPoints(Player p)
+        {
+            try
+            {
+                p.Points = 0;
+                return true;
+            }
+            catch { return false; }
+        }
+        public bool RemovePlayer(Player p)
+        {
+            try
+            {
+                Players.Remove(p);
                 return true;
             }
             catch

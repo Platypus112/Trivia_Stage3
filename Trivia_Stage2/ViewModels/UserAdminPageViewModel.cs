@@ -31,6 +31,7 @@ namespace Trivia_Stage2.ViewModels
         public ICommand AddPlayerCommand { get; private set; }
         public ICommand RefreshCommand { get; private set; }
         public ICommand SortByRankCommand {  get; private set; }
+        public ICommand ResetPlayerPointsCommand { get; private set; }
         
         public UserAdminPageViewModel(Service service_)
         {
@@ -40,6 +41,28 @@ namespace Trivia_Stage2.ViewModels
             RefreshCommand = new Command(async () => Refresh());
 
             Refresh();
+        }
+        private async void ResetPlayerPoints(Object obj)
+        {
+            try
+            {
+                if(service.ResetPlayerPoints((Player)obj))
+                {
+                    ErrorMsg = "Player points reset successfuly successfuly";
+                    ErrorColor = Color.Parse("Green");
+                }
+                else
+                {
+                    ErrorMsg = "Reseting points didn't work";
+                    ErrorColor = Color.Parse("Red");
+                }
+                Refresh();
+            }
+            catch
+            {
+                ErrorMsg = "Reseting points didn't work";
+                ErrorColor = Color.Parse("Red");
+            }
         }
         private async void SortByRank()
         {
