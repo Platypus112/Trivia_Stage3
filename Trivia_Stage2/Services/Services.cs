@@ -32,6 +32,24 @@ namespace Trivia_Stage2.Services
             AddSubjectsToQuestions();
             AddRanksToPlayers();
             AddStatusesToQuestions();
+            AddPlayerToQuestion();
+        }
+
+        private async void AddPlayerToQuestion()
+        {
+            try
+            {
+                foreach (Question q in Questions)
+                {
+                    q.Player = Players.Where(x => x.PlayerId == q.PlayerId).FirstOrDefault();
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+    
         }
         
         private async void AddStatusesToQuestions()
@@ -105,6 +123,10 @@ namespace Trivia_Stage2.Services
         {
             return Questions.Where(x => x.StatusId == 1).ToList();
         }
+        public List<Question> GetQuestionsByPlayer(int id)
+        {
+            return Questions.Where(x => x.PlayerId == id).ToList();
+        }
     }
     internal class PlayerService
     {
@@ -132,6 +154,7 @@ namespace Trivia_Stage2.Services
             Players = new List<Player>();
             Players.Add(new Player()
             {
+                PlayerId = 1,
                 Email = "Admin@yahoo.com",
                 Password = "1234",
                 PlayerName = "Admin",
@@ -140,6 +163,7 @@ namespace Trivia_Stage2.Services
             });
             Players.Add(new Player()
             {
+                PlayerId = 2,
                 Email = "idancar7@gmail.com",
                 Password = "4444",
                 PlayerName = "joe4",
@@ -223,9 +247,9 @@ namespace Trivia_Stage2.Services
             {
                 QuestionId = 6,
                 PlayerId = 1,
-                Correct = "90 minutes",
+                Correct = "92 minutes",
                 Incorrect1 = "43 minutes",
-                Incorrect2 = "92 minutes",
+                Incorrect2 = "90 minutes",
                 Incorrect3 = "110 minutes",
                 QuestionText = "How long is the trolls3 movie?",
                 SubjectId = 1,
