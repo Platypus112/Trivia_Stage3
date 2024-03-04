@@ -19,7 +19,18 @@ namespace Trivia_Stage2.ViewModels
         {
             if (Question != null)
             {
-
+                QuestionId = Question.QuestionId;
+                PlayerId = Question.PlayerId;
+                Correct = Question.Correct;
+                Incorrect1 = Question.Incorrect1;
+                Incorrect2 = Question.Incorrect2;
+                Incorrect3 = Question.Incorrect3;
+                QuestionText = Question.QuestionText;
+                SubjectId = Question.SubjectId;
+                StatusId = Question.StatusId;
+                Player = Question.Player;
+                Status = Question.Status;
+                Subject= Question.Subject;
             }
         }
         private int questionid;
