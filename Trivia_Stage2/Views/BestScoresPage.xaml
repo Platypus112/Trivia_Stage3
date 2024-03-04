@@ -17,8 +17,8 @@
                 <CollectionView.ItemTemplate >
                     <DataTemplate x:DataType="Model:Player">
                         <StackLayout>
-                            <Label Text="{Binding PlayerName}" />
-                            <Label Text="{Binding Points}" />
+                            <!--<Label Text="{Binding PlayerName}" />
+                            <Label Text="{Binding Points}" />-->
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

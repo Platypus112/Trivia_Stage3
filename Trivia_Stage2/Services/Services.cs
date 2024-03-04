@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Java.Lang;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Trivia_Stage2.Models;
 
@@ -66,6 +68,51 @@ namespace Trivia_Stage2.Services
                 q.Subject = Subjects.Where(x => x.SubjectId == q.SubjectId).FirstOrDefault();
             }
         }
+        public bool AddNewPlayer(string playerName_,string password_,string email_)
+        {
+            try
+            {
+                if (!playerService.IsEmailValid(email_)) return false;
+                if (!playerService.IsPasswordValid(password_))return false;
+                if (!playerService.IsNameValid(playerName_)) return false;
+                Players.Add(new Player()
+                {
+                    PlayerName = playerName_,
+                    Password = password_,
+                    Email = email_,
+                    Points = 0,
+                    RankId = 1,
+                    Rank= Ranks.Where(x => x.RankId == 1).FirstOrDefault(),
+                    PlayerId=Players.OrderByDescending(x => x.Rank).FirstOrDefault().PlayerId+1,
+                }) ;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool ResetPlayerPoints(Player p)
+        {
+            try
+            {
+                p.Points = 0;
+                return true;
+            }
+            catch { return false; }
+        }
+        public bool RemovePlayer(Player p)
+        {
+            try
+            {
+                Players.Remove(p);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public bool LogPlayer(string playerName,string password)
         {
             try
@@ -103,6 +150,20 @@ namespace Trivia_Stage2.Services
         public PlayerService()
         {
             FillList();
+        }
+        public bool IsEmailValid(string emailAddress)
+        {
+            var pattern = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
+            var regex = new Regex(pattern);
+            return regex.IsMatch(emailAddress);
+        }
+        public bool IsPasswordValid(string password)
+        {
+            return !string.IsNullOrEmpty(password) && password.Length >= 3 && password.Length <= 20;
+        }
+        public bool IsNameValid(string name)
+        {
+            return !string.IsNullOrEmpty(name) && name.Length >= 3 && name.Length <= 30;
         }
         private async void FillList()
         {
@@ -202,9 +263,9 @@ namespace Trivia_Stage2.Services
             {
                 QuestionId = 6,
                 PlayerId = 1,
-                Correct = "90 minutes",
+                Correct = "92 minutes",
                 Incorrect1 = "43 minutes",
-                Incorrect2 = "92 minutes",
+                Incorrect2 = "90 minutes",
                 Incorrect3 = "110 minutes",
                 QuestionText = "How long is the trolls3 movie?",
                 SubjectId = 1,
