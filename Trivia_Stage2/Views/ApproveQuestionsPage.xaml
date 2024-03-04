@@ -8,38 +8,6 @@
     Title="ApproveQuestionsPage"
     x:DataType="viewModel:ApproveQuestionsPageViewModel">
 
-    <!--<CollectionView
-        Margin="20"
-        ItemsSource="{Binding PendingQuestions}"
-        SelectedItem="{Binding SelectedPendingQuestion}"
-        SelectionChangedCommand="{Binding SelectCommand}"
-        SelectionMode="Single">
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="Model:Question">
-                <Grid
-                    Padding="10"
-                    ColumnDefinitions="Auto,Auto"
-                    ColumnSpacing="6"
-                    RowDefinitions="Auto,Auto"
-                    RowSpacing="6">
-                    <Label
-                        Grid.Column="1"
-                        FontAttributes="Bold"
-                        Text="{Binding Id}" />
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        FontAttributes="Italic"
-                        Text="{Binding Subject}"
-                        VerticalOptions="End" />
-                </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>-->
-
-
-
-
     <ScrollView Margin="10">
 
         <Grid RowDefinitions="*">
