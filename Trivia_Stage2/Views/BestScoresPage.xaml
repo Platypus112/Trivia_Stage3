@@ -13,14 +13,22 @@
             <Entry Text="{Binding SearchBar}"/>
             <Button Text="Search" Command="{Binding Search}"/>
             <CollectionView ItemsSource="{Binding players}" SelectedItem="{Binding SelectedPlayer}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                <CollectionView.ItemTemplate >
+                    <DataTemplate x:DataType="Model:Player">
                         <StackLayout>
                             <!--<Label Text="{Binding PlayerName}" />
                             <Label Text="{Binding Points}" />-->
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="1" Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label Text="No results, please refresh"/>
+                </CollectionView.EmptyView>
+
+
             </CollectionView>
 			<StackLayout>
 				<Label Text="Selected Player Details" FontAttributes="Bold" />
