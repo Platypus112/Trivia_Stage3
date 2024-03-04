@@ -53,10 +53,9 @@ namespace Trivia_Stage2.ViewModels
         }
         public async Task TaskSearch()
         {
-            if (int.TryParse(SearchBar, out int search))
-            {
-                players = new ObservableCollection<Player>(players.Where(player => player.Points == search));
-            }
+            int search = SearchBar;
+                players = new ObservableCollection<Player>(players.Where(player => player.RankId == search));
+            
         }
     }
 }
