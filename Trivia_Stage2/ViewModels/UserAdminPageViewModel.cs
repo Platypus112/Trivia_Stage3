@@ -49,7 +49,12 @@ namespace Trivia_Stage2.ViewModels
         {
             try
             {
-                if(service.RemovePlayer((Player)obj))
+                if (((Player)obj).PlayerId == service.LoggedPlayer.PlayerId)
+                {
+                    ErrorMsg = "Can't delete yourself";
+                    ErrorColor = Color.Parse("Red");
+                }
+                else if (service.RemovePlayer((Player)obj))
                 {
                     ErrorMsg = "Player deleted successfuly";
                     ErrorColor = Color.Parse("Green");
