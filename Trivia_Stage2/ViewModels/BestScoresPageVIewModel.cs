@@ -41,12 +41,18 @@ namespace Trivia_Stage2.ViewModels
             players.Clear(); 
             if (IsOrdered) 
             { 
-                players = new ObservableCollection<Player>(service.Players.OrderByDescending(x => x.Points)); 
+               foreach(Player p in service.Players.OrderByDescending(x => x.Points))
+                {
+                    players.Add(p);
+                }
                 IsOrdered = false; 
             }
             else if (!IsOrdered) 
             { 
-                players = new ObservableCollection<Player>(service.Players.OrderBy(x => x.Points)); 
+                foreach(Player p in service.Players.OrderBy(x=>x.Points))
+                {
+                    players.Add(p);
+                }
                 IsOrdered = true;
             } 
             IsReloading = false; 
