@@ -7,14 +7,10 @@
     xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
     Title="BestScoresPage"
     x:DataType="viewModel:BestScoresPageViewModel">
-    <ScrollView x:Name="scrlview" Margin="10">
-        <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
-            <Button
-                Grid.Row="1"
-                Margin="2"
-                Command="{Binding Reload}"
-                Text="Refresh" />
-            <Picker
+    <RefreshView IsRefreshing="{Binding IsReloading}" Command="{Binding Reload}">
+        <ScrollView x:Name="scrlview" Margin="10">
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+                <Picker
                 x:Name="Picker"
                 Title="Choose a rank"
                 Grid.Row="2"
@@ -23,34 +19,40 @@
                 ItemDisplayBinding="{Binding RankName}"
                 ItemsSource="{Binding BindingContext.Ranks, Source={x:Reference scrlview}}"
                 SelectedItem="{Binding BindingContext.SelectedRank, Source={x:Reference scrlview}}" />
-            <Button
-                Margin="5"
+                <Button
+                Grid.Row="1"
+                Grid.Column="2"
+                Margin="2,2"
                 Command="{Binding Search}"
-                Text="Search" Grid.Row="1" Grid.Column="2"/>
-            <CollectionView
+                IsEnabled="True"
+                Text="Search" />
+                <CollectionView
                 Grid.Row="3"
+                IsEnabled="True"
+                SelectionMode="Single"
                 ItemsSource="{Binding players}"
                 SelectedItem="{Binding SelectedPlayer}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="Model:Player">
-                        <StackLayout>
-                            <Label Grid.Column="1" Text="{Binding PlayerName}" />
-                            <Label Grid.Column="2" Text="{Binding Points}" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="1" Orientation="Vertical" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.EmptyView>
-                    <Label Text="No results, please refresh" />
-                </CollectionView.EmptyView>
-            </CollectionView>
-            <StackLayout Grid.Column="3">
-                <Label FontAttributes="Bold" Text="Selected Player Details" />
-                <Label Text="{Binding SelectedPlayer.Rank.RankName}" />
-                <Label Text="{Binding SelectedPlayer.PlayerId}" />
-            </StackLayout>
-        </Grid>
-    </ScrollView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="Model:Player">
+                            <StackLayout>
+                                <Label Grid.Column="1" Text="{Binding PlayerName}" />
+                                <Label Grid.Column="2" Text="{Binding Points}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="1" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.EmptyView>
+                        <Label Text="No results, please refresh" />
+                    </CollectionView.EmptyView>
+                </CollectionView>
+                <StackLayout Grid.Column="3">
+                    <Label FontAttributes="Bold" Text="Selected Player Details" />
+                    <Label Text="{Binding SelectedPlayer.Rank.RankName}" />
+                    <Label Text="{Binding SelectedPlayer.PlayerId}" />
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>
