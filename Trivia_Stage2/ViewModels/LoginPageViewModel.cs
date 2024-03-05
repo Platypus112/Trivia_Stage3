@@ -43,7 +43,8 @@ namespace Trivia_Stage2.ViewModels
                 Notif = "Login succeeded successfully";
                 NotifColor = Colors.Green;
                 Logged = true;
-                AppShell.Current.FlyoutBehavior = FlyoutBehavior.Flyout; 
+                AppShell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+                await AppShell.Current.GoToAsync("///ApproveQuestionsPage");
             }
             else
             {

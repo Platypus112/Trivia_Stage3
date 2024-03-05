@@ -47,8 +47,16 @@ namespace Trivia_Stage2.ViewModels
         }
         private async void RemovePlayer(Object obj)
         {
-            try
+            
+                try
             {
+                var result = await AppShell.Current.DisplayActionSheet("Delete player?", "Yes", "No");
+                if (result != "Yes")
+                {
+                    ErrorMsg = "Deletion Cancelled";
+                    ErrorColor = Color.Parse("Red");
+                    return;
+                }
                 if (((Player)obj).PlayerId == service.LoggedPlayer.PlayerId)
                 {
                     ErrorMsg = "Can't delete yourself";
@@ -74,6 +82,13 @@ namespace Trivia_Stage2.ViewModels
         }
         private async void ResetPlayerPoints(Object obj)
         {
+            var result = await AppShell.Current.DisplayActionSheet("Reset points?", "Yes", "No");
+            if (result != "Yes")
+            {
+                ErrorMsg = "Reset Cancelled";
+                ErrorColor = Color.Parse("Red");
+                return;
+            }
             try
             {
                 if(service.ResetPlayerPoints((Player)obj))
