@@ -18,7 +18,10 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Row="0" Grid.Column="0" Margin="3">
+                <Grid
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -47,7 +50,10 @@
                         Placeholder="Password"
                         PlaceholderColor="Grey"
                         Text="{Binding PasswordEntry}" />
-                    <Button Grid.Row="4" Command="{Binding AddPlayerCommand}" Text="Add Player" />
+                    <Button
+                        Grid.Row="4"
+                        Command="{Binding AddPlayerCommand}"
+                        Text="Add Player" />
                 </Grid>
                 <Button
                     Grid.Row="1"
@@ -55,9 +61,9 @@
                     Command="{Binding SortByRankCommand}"
                     Text="Sort by rank" />
                 <CollectionView
+                    x:Name="collection"
                     Grid.Row="2"
                     Grid.Column="0"
-                    x:Name="collection"
                     Margin="3"
                     ItemsSource="{Binding Players}">
                     <CollectionView.ItemTemplate>
@@ -67,62 +73,62 @@
                                     <SwipeItem
                                         Command="{Binding Source={x:Reference collection}, Path=BindingContext.RemovePlayerCommand}"
                                         CommandParameter="{Binding .}"
-                                        IconImageSource="https://i.fbcd.co/products/resized/resized-750-500/de18ae7d25cea00a569f391100ae56d990105791a99a2d42f35d84477a869d68.jpg" />
+                                        IconImageSource="https://cdn-icons-png.flaticon.com/512/3405/3405244.png" />
                                     <SwipeItem
                                         Command="{Binding Source={x:Reference collection}, Path=BindingContext.ResetPlayerPointsCommand}"
                                         CommandParameter="{Binding .}"
                                         IconImageSource="https://cdn-icons-png.flaticon.com/512/2618/2618245.png" />
                                 </SwipeView.RightItems>
                                 <Border
-                                Margin="4,5"
-                                Padding="4"
-                                HeightRequest="200">
+                                    Margin="4,5"
+                                    Padding="4"
+                                    HeightRequest="200">
                                     <VerticalStackLayout>
                                         <Label>
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="Player id: "/>
-                                                    <Span Text="{Binding PlayerId}"/>
+                                                    <Span Text="Player id: " />
+                                                    <Span Text="{Binding PlayerId}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
                                         <Label>
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="Player name: "/>
-                                                    <Span Text="{Binding PlayerName}"/>
+                                                    <Span Text="Player name: " />
+                                                    <Span Text="{Binding PlayerName}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
                                         <Label>
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="Email: "/>
-                                                    <Span Text="{Binding Email}"/>
+                                                    <Span Text="Email: " />
+                                                    <Span Text="{Binding Email}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
                                         <Label>
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="Points: "/>
-                                                    <Span Text="{Binding Points}"/>
+                                                    <Span Text="Points: " />
+                                                    <Span Text="{Binding Points}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
                                         <Label>
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="Rank: "/>
-                                                    <Span Text="{Binding Rank.RankName}"/>
+                                                    <Span Text="Rank: " />
+                                                    <Span Text="{Binding Rank.RankName}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
                                         <Label>
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="Password: "/>
-                                                    <Span Text="{Binding Password}"/>
+                                                    <Span Text="Password: " />
+                                                    <Span Text="{Binding Password}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
