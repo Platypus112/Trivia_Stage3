@@ -50,8 +50,8 @@ namespace Trivia_Stage2.ViewModels
             
                 try
             {
-                var result = await AppShell.Current.DisplayActionSheet("Delete player?", "Yes", "No");
-                if (result != "Yes")
+               
+                if (await AppShell.Current.DisplayAlert("Delete player?","Are you sure you want to delete this player?", "No", "Yes"))
                 {
                     ErrorMsg = "Deletion Cancelled";
                     ErrorColor = Color.Parse("Red");
@@ -82,8 +82,8 @@ namespace Trivia_Stage2.ViewModels
         }
         private async void ResetPlayerPoints(Object obj)
         {
-            var result = await AppShell.Current.DisplayActionSheet("Reset points?", "Yes", "No");
-            if (result != "Yes")
+            
+            if (await AppShell.Current.DisplayAlert("Reset player points?", "Are you sure you want to reset this player's points?","No","Yes"))
             {
                 ErrorMsg = "Reset Cancelled";
                 ErrorColor = Color.Parse("Red");
