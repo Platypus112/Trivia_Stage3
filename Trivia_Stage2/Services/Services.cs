@@ -126,21 +126,26 @@ namespace Trivia_Stage2.Services
         }
         public async void ApproveQuestion(Question q)
         {
-            q.Subject.SubjectId = 2;
+            q.StatusId = 2;
+            q.Status =QuestionStatuses.Where(x=>x.StatusId==q.StatusId).FirstOrDefault();
         }
 
         public async void DeclineQuestion(Question q)
         {
-            q.Subject.SubjectId = 0;
+            q.StatusId = 3;
+            q.Status = QuestionStatuses.Where(x => x.StatusId == q.StatusId).FirstOrDefault();
         }
-
+        public List<Question> GetQuestionsByStatusName(string status)
+        {
+            return Questions.Where(x => x.Status.StatusName == status).ToList();
+        }
         public List<Question> GetPendingQuestions()
         {
             return Questions.Where(x => x.StatusId == 1).ToList();
         }
-        public List<Question> GetQuestionsByPlayer(int id)
+        public List<Question> GetLoggedQuestions()
         {
-            return Questions.Where(x => x.PlayerId == id).ToList();
+            return Questions.Where(x => x.PlayerId == LoggedPlayer.PlayerId).ToList();
         }
     }
     internal class PlayerService
