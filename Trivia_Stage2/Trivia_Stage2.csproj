@@ -51,6 +51,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\check.png" />
 	  <None Remove="Resources\Images\edit.png" />
+	  <None Remove="Resources\Images\ex.png" />
 	  <None Remove="Resources\Images\goal.png" />
 	  <None Remove="Resources\Images\Pondering.png" />
 	</ItemGroup>
