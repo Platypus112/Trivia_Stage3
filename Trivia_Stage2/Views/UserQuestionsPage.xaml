@@ -15,7 +15,7 @@
                 Grid.Column="0"
                 Margin="10"
                 Placeholder="Enter Status"
-                Text="{Binding FilterEntry}"/>
+                Text="{Binding FilterEntry}" />
             <Button
                 Grid.Row="0"
                 Grid.Column="1"
@@ -60,8 +60,15 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-
                                 <Label Grid.Row="1" Margin="3">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Status: " />
+                                            <Span Text="{Binding Status.StatusName}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Grid.Row="2" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="Subject: " />
@@ -69,7 +76,7 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Grid.Row="2" Margin="3">
+                                <Label Grid.Row="3" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="Text: " />
@@ -77,7 +84,7 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Grid.Row="3" Margin="3">
+                                <Label Grid.Row="4" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="Correct Answer: " />
@@ -85,7 +92,7 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Grid.Row="4" Margin="3">
+                                <Label Grid.Row="5" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="1st Wrong Answer: " />
@@ -93,7 +100,7 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Grid.Row="5" Margin="3">
+                                <Label Grid.Row="6" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="2nd Wrong Answer: " />
@@ -101,19 +108,11 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Grid.Row="6" Margin="3">
+                                <Label Grid.Row="7" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="3rd Wrong Answer: " />
                                             <Span Text="{Binding Incorrect3}" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label Grid.Row="7" Margin="3">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="Status: " />
-                                            <Span Text="{Binding Status.StatusName}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>

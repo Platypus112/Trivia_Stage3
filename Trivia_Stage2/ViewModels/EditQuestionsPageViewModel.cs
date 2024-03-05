@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Trivia_Stage2.Models;
+using Trivia_Stage2.Services;
 
 namespace Trivia_Stage2.ViewModels
 {
@@ -15,6 +16,7 @@ namespace Trivia_Stage2.ViewModels
     {
         private Question question;
         public Question Question { get => question; set { question = value; UpdateFields(); } }
+        private Service service;
         private void UpdateFields()
         {
             if (Question != null)
@@ -33,8 +35,8 @@ namespace Trivia_Stage2.ViewModels
                 Subject= Question.Subject;
             }
         }
-        private int questionid;
-        public int QuestionId { get => questionid; set { questionid = value; OnPropertyChanged(); } }
+        private int questionId;
+        public int QuestionId { get => questionId; set { questionId = value; OnPropertyChanged(); } }
         private int playerid;
         public int PlayerId { get => playerid; set { playerid = value; OnPropertyChanged(); } }
         private string correct;
@@ -57,5 +59,10 @@ namespace Trivia_Stage2.ViewModels
         public QuestionStatus Status { get => status; set { status = value; OnPropertyChanged(); } }
         private Subject subject;
         public Subject Subject { get => subject; set { subject = value; OnPropertyChanged(); } }
+        public EditQuestionsPageViewModel(Service service)
+        {
+            this.service = service;
+            UpdateFields();
+        }
     }
 }
