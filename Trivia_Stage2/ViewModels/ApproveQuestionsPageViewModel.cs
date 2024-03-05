@@ -37,15 +37,22 @@ namespace Trivia_Stage2.ViewModels
 
         private async Task ApproveQuestion(Object obj)
         {
-            PendingQuestions.Remove(((Question)obj));
-            service.ApproveQuestion(((Question)obj));
+            bool approve = await AppShell.Current.DisplayAlert("Question", "Would you like to approve the question?", "Yes", "Cancel");
+            if (approve == true)
+            {
+                PendingQuestions.Remove(((Question)obj));
+                service.ApproveQuestion(((Question)obj));
+            }
         }
         
         private async Task DeclineQuestion(Object obj)
         {
-            PendingQuestions.Remove(((Question)obj));
-            service.DeclineQuestion(((Question)obj));
-
+            bool approve = await AppShell.Current.DisplayAlert("Question", "Would you like to decline the question?", "Yes", "Cancel");
+            if (approve == true)
+            {
+                PendingQuestions.Remove(((Question)obj));
+                service.DeclineQuestion(((Question)obj));
+            }
         }
     }
 }
