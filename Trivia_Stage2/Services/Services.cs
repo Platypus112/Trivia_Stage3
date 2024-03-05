@@ -104,6 +104,7 @@ namespace Trivia_Stage2.Services
         {
             try
             {
+                if (p.PlayerId == LoggedPlayer.PlayerId) return false;
                 Players.Remove(p);
                 return true;
             }
