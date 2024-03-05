@@ -33,7 +33,24 @@ namespace Trivia_Stage2.ViewModels
             Search = new Command(async () => await TaskSearch());
             Ranks = new ObservableCollection<Rank>(service.Ranks);
         }
-        public async Task TaskReload(){if(IsReloading)return;IsReloading=true;players.Clear();if(IsOrdered){players=new ObservableCollection<Player>(service.Players.OrderByDescending(x=>x.Points));IsOrdered=false;}else if(!IsOrdered){players=new ObservableCollection<Player>(service.Players.OrderBy(x=>x.Points));IsOrdered = true;}IsReloading=false;}
+        public async Task TaskReload() 
+        { 
+            if (IsReloading) 
+                return; 
+            IsReloading = true; 
+            players.Clear(); 
+            if (IsOrdered) 
+            { 
+                players = new ObservableCollection<Player>(service.Players.OrderByDescending(x => x.Points)); 
+                IsOrdered = false; 
+            }
+            else if (!IsOrdered) 
+            { 
+                players = new ObservableCollection<Player>(service.Players.OrderBy(x => x.Points)); 
+                IsOrdered = true;
+            } 
+            IsReloading = false; 
+        }
         public async Task TaskSearch()
         {
             
@@ -41,8 +58,11 @@ namespace Trivia_Stage2.ViewModels
             {
                 try
                 {
-                     players.Clear();
-                    players = new ObservableCollection<Player>(service.Players.Where(x => x.RankId == SelectedRank.RankId));
+                    players.Clear();
+                    foreach (Player p in service.Players.Where(x => x.RankId == SelectedRank.RankId))
+                    {
+                        players.Add(p);
+                    }
                 }
                 catch (Exception ex)
                 {
