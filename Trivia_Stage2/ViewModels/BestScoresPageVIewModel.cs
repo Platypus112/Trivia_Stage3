@@ -12,7 +12,7 @@ namespace Trivia_Stage2.ViewModels
     public class BestScoresPageViewModel : ViewModel
     {
         private Service service;
-        public bool IsReloading;
+        public bool IsReloading { get; set; }
         public ICommand Reload { get; set; }
         public ICommand Search { get; set; }
         public bool IsOrdered;
@@ -33,35 +33,41 @@ namespace Trivia_Stage2.ViewModels
             Search = new Command(async () => await TaskSearch());
             Ranks = new ObservableCollection<Rank>(service.Ranks);
         }
-        public async Task TaskReload()
-        {
-            if (IsReloading) return;
-            IsReloading=true;
-            players.Clear();
-            foreach (Player plr in service.Players)
-                players.Add(plr);
-            if (IsOrdered)
-            {
-                players = new ObservableCollection<Player>(players.OrderByDescending(p => p.Points));
-                IsOrdered = false;
+        public async Task TaskReload() 
+        { 
+            if (IsReloading) 
+                return; 
+            IsReloading = true; 
+            players.Clear(); 
+            if (IsOrdered) 
+            { 
+                players = new ObservableCollection<Player>(service.Players.OrderByDescending(x => x.Points)); 
+                IsOrdered = false; 
             }
-            else
-            {
-                players = new ObservableCollection<Player>(players.OrderBy(p => p.Points));
+            else if (!IsOrdered) 
+            { 
+                players = new ObservableCollection<Player>(service.Players.OrderBy(x => x.Points)); 
                 IsOrdered = true;
-            }
-            IsReloading = false;
-
+            } 
+            IsReloading = false; 
         }
         public async Task TaskSearch()
         {
-            try
+            
+            if (SelectedRank != null)
             {
-                players = new ObservableCollection<Player>(players.Where(player => player.RankId == SelectedRank.RankId));
-            }
-            catch(Exception ex) 
-            {
-                
+                try
+                {
+                    players.Clear();
+                    foreach (Player p in service.Players.Where(x => x.RankId == SelectedRank.RankId))
+                    {
+                        players.Add(p);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    players.Clear();
+                }
             }
         }
     }

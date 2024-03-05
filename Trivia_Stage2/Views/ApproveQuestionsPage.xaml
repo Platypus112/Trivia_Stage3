@@ -33,7 +33,7 @@
                             <SwipeItem
                                 Command="{Binding Source={x:Reference collection}, Path=BindingContext.DeclineQuestionCommand}"
                                 CommandParameter="{Binding .}"
-                                IconImageSource="ex.png" />
+                                IconImageSource="https://images.emojiterra.com/google/noto-emoji/unicode-15/bw/1024px/274c.png" />
                             <SwipeItem
                                 Command="{Binding Source={x:Reference collection}, Path=BindingContext.ApproveQuestionCommand}"
                                 CommandParameter="{Binding .}"

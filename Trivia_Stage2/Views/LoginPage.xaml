@@ -7,8 +7,8 @@
     Title="Login Page"
     FlyoutItem.IsVisible="False"
     Shell.TabBarIsVisible="False"
+    Shell.PresentationMode="Modal"
     Shell.FlyoutItemIsVisible="False"
-    
     x:DataType="viewModel:LoginPageViewModel">
     <Grid ColumnDefinitions="*,*" RowDefinitions="2*,3*,3*,3*,3*,30*">
         <Label
