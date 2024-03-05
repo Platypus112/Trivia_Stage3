@@ -13,15 +13,17 @@ namespace Trivia_Stage2.ViewModels
     public class UserQuestionsPageViewModel : ViewModel
     {
         private Service service;
-        private List<Question> questionkeeper;
+        private List<Question> questionKeeper;
         private ObservableCollection<Question> questions;
         public ObservableCollection<Question> Questions { get => questions; set { questions = value; OnPropertyChanged(); } }
-        private Question selectedquestion;
-        public Question SelectedQuestion { get => selectedquestion; set { selectedquestion = value; OnPropertyChanged(); } }
+        private Question selectedQuestion;
+        public Question SelectedQuestion { get => selectedQuestion; set { selectedQuestion = value; OnPropertyChanged(); } }
         private string text;
         public string Text { get => text; set {  text = value; OnPropertyChanged(); } }
         private bool isRefreshing;
         public bool IsRefreshing { get => isRefreshing; set { isRefreshing = value; OnPropertyChanged(); } }
+        private string filterEntry;
+        public string FilterEntry { get => filterEntry; set { filterEntry = value; OnPropertyChanged(); } }
         public ICommand FilterByStatusCommand { get; private set; }
         public ICommand LoadQuestionsCommand { get; private set; }
         public ICommand NavigateEditCommand { get; private set; }
@@ -30,7 +32,7 @@ namespace Trivia_Stage2.ViewModels
         {
             IsRefreshing = false;
             service = service_;
-            Questions = new ObservableCollection<Question>(service.GetQuestionsByPlayer(service.LoggedPlayer.PlayerId));
+            Questions = new ObservableCollection<Question>(service.GetLoggedQuestions());
             FilterByStatusCommand = new Command<string>((x) => FilterStatus(x));
             LoadQuestionsCommand = new Command(async () => await LoadQuestions());
             NavigateEditCommand = new Command(async () => await NavToEditPage());
@@ -38,26 +40,26 @@ namespace Trivia_Stage2.ViewModels
         }
         private async Task NavToEditPage()
         {
-            Dictionary<string, object> data = new Dictionary<string, object>();
-            data.Add("Question", SelectedQuestion);
-            await AppShell.Current.GoToAsync("EditQuestionsPage", data);
-            SelectedQuestion = null;
+            if (SelectedQuestion != null)
+            {
+                Dictionary<string, object> data = new Dictionary<string, object>();
+                data.Add("Question", SelectedQuestion);
+                await AppShell.Current.GoToAsync("EditQuestionsPage", data);
+                SelectedQuestion = null;
+            }
         }
         private void FilterStatus(string filter)
         {
             Questions.Clear();
-            foreach (Question question in questionkeeper)
+            foreach (Question question in questionKeeper)
             {
                 Questions.Add(question);
             }
-            filter = filter.ToLower();
             List<Question> filtered = new List<Question>();
+            filter.ToLower();
             foreach (Question q in Questions)
             {
-                if (q.Status.StatusName.ToLower() == filter)
-                {
-                    filtered.Add(q);
-                }
+                if (q.Status.StatusName.ToLower() == filter) filtered.Add(q);
             }
             Questions.Clear();
             foreach (Question q in filtered)
@@ -68,9 +70,10 @@ namespace Trivia_Stage2.ViewModels
         private async Task LoadQuestions()
         {
             IsRefreshing = true;
-            questionkeeper = service.Questions.Where(x => x.PlayerId == service.LoggedPlayer.PlayerId).ToList();
+            questionKeeper = service.Questions.Where(x => x.PlayerId == service.LoggedPlayer.PlayerId).ToList();
             Questions.Clear();
-            foreach (Question q in questionkeeper)
+            FilterEntry = string.Empty;
+            foreach (Question q in questionKeeper)
             {
                 Questions.Add(q);
             }

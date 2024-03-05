@@ -44,12 +44,15 @@ namespace Trivia_Stage2.ViewModels
                 NotifColor = Colors.Green;
                 Logged = true;
                 AppShell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+                await AppShell.Current.GoToAsync("///ApproveQuestionsPage");
             }
             else
             {
                 Notif = "Login failed failfully";
                 NotifColor = Colors.Red;
             }
+            PlayerName = string.Empty;
+            Password = string.Empty;
         }
         private async void Cancel()
         {
