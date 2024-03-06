@@ -23,9 +23,14 @@
                     Grid.Row="1"
                     Grid.Column="2"
                     Margin="2,2"
+                    BackgroundColor="white"
+                    BorderColor="Black"
+                    BorderWidth="3"
                     Command="{Binding Search}"
+                    FontAttributes="Bold"
                     IsEnabled="True"
-                    Text="Search" />
+                    Text="Search"
+                    TextColor="black" />
                 <CollectionView
                     Grid.Row="0"
                     IsEnabled="True"

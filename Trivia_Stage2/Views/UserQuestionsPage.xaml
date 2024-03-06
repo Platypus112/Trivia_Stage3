@@ -51,67 +51,51 @@
                             Margin="4,5"
                             Padding="4"
                             HeightRequest="200">
-                            <Grid RowDefinitions="*,*,*,*,*,*,*,*">
+                            <Grid RowDefinitions="*,*,*,*,*,*">
                                 <Label Grid.Row="0" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="Id: " />
-                                            <Span Text="{Binding QuestionId}" />
+                                            <Span FontAttributes="Bold" Text="Subject: " />
+                                            <Span Text="{Binding Subject.SubjectName}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
                                 <Label Grid.Row="1" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="Status: " />
-                                            <Span Text="{Binding Status.StatusName}" />
+                                            <Span FontAttributes="Bold" Text="Text: " />
+                                            <Span Text="{Binding QuestionText}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
                                 <Label Grid.Row="2" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="Subject: " />
-                                            <Span Text="{Binding Subject.SubjectName}" />
+                                            <Span FontAttributes="Bold" Text="Correct Answer: " />
+                                            <Span Text="{Binding Correct}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
                                 <Label Grid.Row="3" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="Text: " />
-                                            <Span Text="{Binding QuestionText}" />
+                                            <Span FontAttributes="Bold" Text="1st Wrong Answer: " />
+                                            <Span Text="{Binding Incorrect1}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
                                 <Label Grid.Row="4" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="Correct Answer: " />
-                                            <Span Text="{Binding Correct}" />
+                                            <Span FontAttributes="Bold" Text="2nd Wrong Answer: " />
+                                            <Span Text="{Binding Incorrect2}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
                                 <Label Grid.Row="5" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="1st Wrong Answer: " />
-                                            <Span Text="{Binding Incorrect1}" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label Grid.Row="6" Margin="3">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="2nd Wrong Answer: " />
-                                            <Span Text="{Binding Incorrect2}" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label Grid.Row="7" Margin="3">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="3rd Wrong Answer: " />
+                                            <Span FontAttributes="Bold" Text="3rd Wrong Answer: " />
                                             <Span Text="{Binding Incorrect3}" />
                                         </FormattedString>
                                     </Label.FormattedText>

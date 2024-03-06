@@ -8,11 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Trivia_Stage2.Models;
 using Trivia_Stage2.Services;
+using System.Windows.Input;
 
 namespace Trivia_Stage2.ViewModels
 {
     [QueryProperty(nameof(Question), "Question")]
-    public class EditQuestionsPageViewModel:ViewModel
+    public class EditQuestionsPageViewModel : ViewModel
     {
         private Question question;
         public Question Question { get => question; set { question = value; UpdateFields(); } }
@@ -32,7 +33,7 @@ namespace Trivia_Stage2.ViewModels
                 StatusId = (int)Question.StatusId;
                 Player = Question.Player;
                 Status = Question.Status;
-                Subject= Question.Subject;
+                SubjectName = Question.Subject.SubjectName;
             }
         }
         private int questionId;
@@ -45,7 +46,7 @@ namespace Trivia_Stage2.ViewModels
         public string Incorrect1 { get => incorrect1; set { incorrect1 = value; OnPropertyChanged(); } }
         private string incorrect2;
         public string Incorrect2 { get => incorrect2; set { incorrect2 = value; OnPropertyChanged(); } }
-        private string incorrect3;           
+        private string incorrect3;
         public string Incorrect3 { get => incorrect3; set { incorrect3 = value; OnPropertyChanged(); } }
         private string questiontext;
         public string QuestionText { get => questiontext; set { questiontext = value; OnPropertyChanged(); } }
@@ -57,12 +58,52 @@ namespace Trivia_Stage2.ViewModels
         public Player Player { get => player; set { player = value; OnPropertyChanged(); } }
         private QuestionStatus status;
         public QuestionStatus Status { get => status; set { status = value; OnPropertyChanged(); } }
-        private Subject subject;
-        public Subject Subject { get => subject; set { subject = value; OnPropertyChanged(); } }
+        private string subjectName;
+        public string SubjectName { get => subjectName; set { subjectName = value; OnPropertyChanged(); } }
+        public ICommand SaveChangesCommand { get; private set; }
+        public ICommand ResetChangesCommand { get; private set; }
+        public ICommand UpdateSubjectCommand { get; private set; }
+        public ICommand UpdateQuestionTextCommand { get; private set; }
+        public ICommand UpdateCorrectCommand { get; private set; }
+        public ICommand UpdateIncorrect1Command { get; private set; }
+        public ICommand UpdateIncorrect2Command { get; private set; }
+        public ICommand UpdateIncorrect3Command { get; private set; }
         public EditQuestionsPageViewModel(Service service)
         {
             this.service = service;
             UpdateFields();
+            SaveChangesCommand = new Command(async () => await SaveChanges());
+            ResetChangesCommand = new Command(async () => await ResetChanges());
+            UpdateSubjectCommand = new Command<string>((x) => SubjectCommand(x));
+            UpdateQuestionTextCommand = new Command<string>((x) => QuestionTextCommand(x));
+            UpdateCorrectCommand = new Command<string>((x) => CorrectCommand(x));
+            UpdateIncorrect1Command = new Command<string>((x) => Incorrect1Command(x));
+            UpdateIncorrect2Command = new Command<string>((x) => Incorrect2Command(x));
+            UpdateIncorrect3Command = new Command<string>((x) => Incorrect3Command(x));
+        }
+        private async Task SaveChanges()
+        {
+        }
+        private async Task ResetChanges()
+        {
+        }
+        private void SubjectCommand(string entry)
+        {
+        }
+        private void QuestionTextCommand(string entry)
+        {
+        }
+        private void CorrectCommand(string entry)
+        {
+        }
+        private void Incorrect1Command(string entry)
+        {
+        }
+        private void Incorrect2Command(string entry)
+        {
+        }
+        private void Incorrect3Command(string entry)
+        {
         }
     }
 }

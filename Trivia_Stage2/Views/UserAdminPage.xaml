@@ -52,14 +52,24 @@
                         Text="{Binding PasswordEntry}" />
                     <Button
                         Grid.Row="4"
+                        BackgroundColor="white"
+                        BorderColor="Black"
+                        BorderWidth="3"
                         Command="{Binding AddPlayerCommand}"
-                        Text="Add Player" />
+                        FontAttributes="Bold"
+                        Text="Add Player"
+                        TextColor="black" />
                 </Grid>
                 <Button
                     Grid.Row="1"
                     Grid.Column="0"
+                    BackgroundColor="white"
+                    BorderColor="Black"
+                    BorderWidth="3"
                     Command="{Binding SortByRankCommand}"
-                    Text="Sort by rank" />
+                    FontAttributes="Bold"
+                    Text="Sort by rank"
+                    TextColor="black" />
                 <CollectionView
                     x:Name="collection"
                     Grid.Row="2"
