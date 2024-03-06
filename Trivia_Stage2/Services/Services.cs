@@ -140,6 +140,11 @@ namespace Trivia_Stage2.Services
         {
             return Questions.Where(x => x.Status.StatusName == status).ToList();
         }
+
+        public List<Question> GetPendingQuestionsBySubjectName(string subject)
+        {
+            return Questions.Where(x => x.Subject.SubjectName.Contains(subject)&& x.StatusId==1).ToList();
+        }
         public List<Question> GetPendingQuestions()
         {
             return Questions.Where(x => x.StatusId == 1).ToList();
