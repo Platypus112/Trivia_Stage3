@@ -81,8 +81,7 @@
                                 </SwipeView.RightItems>
                                 <Border
                                     Margin="4,5"
-                                    Padding="4"
-                                    HeightRequest="200">
+                                    Padding="4">
                                     <VerticalStackLayout>
                                         <Label>
                                             <Label.FormattedText>
@@ -121,14 +120,6 @@
                                                 <FormattedString>
                                                     <Span Text="Rank: " />
                                                     <Span Text="{Binding Rank.RankName}" />
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                        <Label>
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="Password: " />
-                                                    <Span Text="{Binding Password}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>

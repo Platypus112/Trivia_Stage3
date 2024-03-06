@@ -72,6 +72,6 @@
             Grid.Row="5"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Source="pondering.png" />
+            Source="pond.png" />
     </Grid>
 </ContentPage>

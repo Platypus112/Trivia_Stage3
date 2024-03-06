@@ -47,10 +47,8 @@ namespace Trivia_Stage2.ViewModels
         }
         private async void RemovePlayer(Object obj)
         {
-            
-                try
+            try
             {
-               
                 if (await AppShell.Current.DisplayAlert("Delete player?","Are you sure you want to delete this player?", "No", "Yes"))
                 {
                     ErrorMsg = "Deletion Cancelled";
