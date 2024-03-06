@@ -35,6 +35,13 @@ namespace Trivia_Stage2.Services
         }
         public async void SaveEditedChanges(Question question, string subject, string text, string c, string inc1, string inc2, string inc3)
         {
+            int playerId = (int)question.PlayerId;
+            int index = question.QuestionId - 1;
+            Questions.RemoveAt(index);
+            question = new Question();
+            question.PlayerId = playerId;
+            question.Player=Players.Where(x => x.PlayerId == playerId).FirstOrDefault();
+            question.QuestionId = index+1;
             question.Subject = Subjects.Where(s => s.SubjectName.ToLower() == subject.ToLower()).FirstOrDefault();
             question.QuestionText = text;
             question.Correct = c;
@@ -42,6 +49,7 @@ namespace Trivia_Stage2.Services
             question.Incorrect2 = inc2;
             question.Incorrect3 = inc3;
             question.Status = QuestionStatuses.Where(s => s.StatusId == 1).FirstOrDefault();
+            Questions.Insert(index, question);
         }
         private async void AddPlayerToQuestions()
         {
