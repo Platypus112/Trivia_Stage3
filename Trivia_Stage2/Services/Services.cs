@@ -33,7 +33,16 @@ namespace Trivia_Stage2.Services
             AddStatusesToQuestions();
             AddPlayerToQuestions();
         }
-
+        public async void SaveEditedChanges(Question question, string subject, string text, string c, string inc1, string inc2, string inc3)
+        {
+            question.Subject = Subjects.Where(s => s.SubjectName.ToLower() == subject.ToLower()).FirstOrDefault();
+            question.QuestionText = text;
+            question.Correct = c;
+            question.Incorrect1 = inc1;
+            question.Incorrect2 = inc2;
+            question.Incorrect3 = inc3;
+            question.Status = QuestionStatuses.Where(s => s.StatusId == 1).FirstOrDefault();
+        }
         private async void AddPlayerToQuestions()
         {
             try
@@ -90,6 +99,10 @@ namespace Trivia_Stage2.Services
             {
                 return false;
             }
+        }
+        public bool SubjectIsExist(string subject)
+        {
+            return (Subjects.Where(s => s.SubjectName.ToLower() == subject.ToLower()).FirstOrDefault() != null);
         }
         public bool ResetPlayerPoints(Player p)
         {

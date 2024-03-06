@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Trivia_Stage2.Models;
 using Trivia_Stage2.Services;
 using System.Windows.Input;
+using Xamarin.Google.Crypto.Tink.Shaded.Protobuf;
 
 namespace Trivia_Stage2.ViewModels
 {
@@ -31,8 +32,7 @@ namespace Trivia_Stage2.ViewModels
                 QuestionText = Question.QuestionText;
                 SubjectId = (int)Question.SubjectId;
                 StatusId = (int)Question.StatusId;
-                Player = Question.Player;
-                Status = Question.Status;
+                StatusName = Question.Status.StatusName;
                 SubjectName = Question.Subject.SubjectName;
             }
         }
@@ -54,12 +54,24 @@ namespace Trivia_Stage2.ViewModels
         public int SubjectId { get => subjectid; set { subjectid = value; OnPropertyChanged(); } }
         private int statusid;
         public int StatusId { get => statusid; set { statusid = value; OnPropertyChanged(); } }
-        private Player player;
-        public Player Player { get => player; set { player = value; OnPropertyChanged(); } }
-        private QuestionStatus status;
-        public QuestionStatus Status { get => status; set { status = value; OnPropertyChanged(); } }
+        private string statusName;
+        public string StatusName { get => statusName; set { statusName = value; OnPropertyChanged(); } }
         private string subjectName;
         public string SubjectName { get => subjectName; set { subjectName = value; OnPropertyChanged(); } }
+        private string subjectEntry;
+        public string SubjectEntry { get => subjectEntry; set { subjectEntry = value; OnPropertyChanged(); } }
+        private string textEntry;
+        public string TextEntry { get => textEntry; set { textEntry = value; OnPropertyChanged(); } }
+        private string correctEntry;
+        public string CorrectEntry { get => correctEntry; set { correctEntry = value; OnPropertyChanged(); } }
+        private string incorrect1Entry;
+        public string Incorrect1Entry { get => incorrect1Entry; set { incorrect1Entry = value; OnPropertyChanged(); } }
+        private string incorrect2Entry;
+        public string Incorrect2Entry { get => incorrect2Entry; set { incorrect2Entry = value; OnPropertyChanged(); } }
+        private string incorrect3Entry;
+        public string Incorrect3Entry { get => incorrect3Entry; set { incorrect3Entry = value; OnPropertyChanged(); } }
+        private string alertText;
+        public string AlertText { get => alertText; set { alertText = value; OnPropertyChanged(); } }
         public ICommand SaveChangesCommand { get; private set; }
         public ICommand ResetChangesCommand { get; private set; }
         public ICommand UpdateSubjectCommand { get; private set; }
@@ -83,27 +95,70 @@ namespace Trivia_Stage2.ViewModels
         }
         private async Task SaveChanges()
         {
+            service.SaveEditedChanges(Question, SubjectName, QuestionText, Correct, Incorrect1, Incorrect2, Incorrect3);
+            await AppShell.Current.GoToAsync("///UserQuestionsPage");
         }
         private async Task ResetChanges()
         {
+            UpdateFields();
+            AlertText = string.Empty;
         }
         private void SubjectCommand(string entry)
         {
+            if (entry != null)
+            {
+                if (service.SubjectIsExist(entry))
+                {
+                    SubjectName = entry;
+                    AlertText = string.Empty;
+                    SubjectEntry = string.Empty;
+                }
+                else
+                {
+                    SubjectEntry = string.Empty;
+                    AlertText = " Invalid Subject";
+                }
+            }
         }
         private void QuestionTextCommand(string entry)
         {
+            if (entry != null)
+            {
+                QuestionText = entry;
+                TextEntry = string.Empty;
+            }
         }
         private void CorrectCommand(string entry)
         {
+            if (entry != null)
+            {
+                Correct = entry;
+                CorrectEntry = string.Empty;
+            }
         }
         private void Incorrect1Command(string entry)
         {
+            if (entry != null)
+            {
+                Incorrect1 = entry;
+                Incorrect1Entry = string.Empty;
+            }
         }
         private void Incorrect2Command(string entry)
         {
+            if (entry != null)
+            {
+                Incorrect2 = entry;
+                Incorrect2Entry = string.Empty;
+            }
         }
         private void Incorrect3Command(string entry)
         {
+            if (entry != null)
+            {
+                Incorrect3 = entry;
+                Incorrect3Entry = string.Empty;
+            }
         }
     }
 }

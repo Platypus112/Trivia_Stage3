@@ -59,7 +59,7 @@ namespace Trivia_Stage2.ViewModels
             filter.ToLower();
             foreach (Question q in Questions)
             {
-                if (q.Status.StatusName.ToLower() == filter) filtered.Add(q);
+                if (q.Status.StatusName.ToLower() == filter.ToLower()) filtered.Add(q);
             }
             Questions.Clear();
             foreach (Question q in filtered)
@@ -70,7 +70,7 @@ namespace Trivia_Stage2.ViewModels
         private async Task LoadQuestions()
         {
             IsRefreshing = true;
-            questionKeeper = service.Questions.Where(x => x.PlayerId == service.LoggedPlayer.PlayerId).ToList();
+            questionKeeper = service.Questions.Where(x => x.PlayerId == service.LoggedPlayer.PlayerId).ToList();//add to service immediatly!!!
             Questions.Clear();
             FilterEntry = string.Empty;
             foreach (Question q in questionKeeper)

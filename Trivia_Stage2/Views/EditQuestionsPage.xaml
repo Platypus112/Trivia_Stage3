@@ -40,15 +40,17 @@
                 <Label Grid.Row="0" Margin="3">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span
-                                x:Name="subject"
-                                FontAttributes="Bold"
-                                Text="Subject: " />
+                            <Span FontAttributes="Bold" Text="Subject: " />
                             <Span Text="{Binding SubjectName}" />
+                            <Span Text="{Binding AlertText}" TextColor="Red" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Entry Grid.Row="1" Placeholder="Enter new Subject" />
+                <Entry
+                    x:Name="subject"
+                    Grid.Row="1"
+                    Placeholder="Enter new Subject"
+                    Text="{Binding SubjectEntry}" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="1"
@@ -74,7 +76,8 @@
                 <Entry
                     x:Name="questionText"
                     Grid.Row="3"
-                    Placeholder="Enter new Question" />
+                    Placeholder="Enter new Question"
+                    Text="{Binding TextEntry}" />
                 <Button
                     Grid.Row="3"
                     Grid.Column="1"
@@ -100,7 +103,8 @@
                 <Entry
                     x:Name="correct"
                     Grid.Row="5"
-                    Placeholder="Enter new Correct Answer" />
+                    Placeholder="Enter new Correct Answer"
+                    Text="{Binding CorrectEntry}" />
                 <Button
                     Grid.Row="5"
                     Grid.Column="1"
@@ -126,7 +130,8 @@
                 <Entry
                     x:Name="inc1"
                     Grid.Row="7"
-                    Placeholder="Enter new Incorrect Answer" />
+                    Placeholder="Enter new Incorrect Answer" 
+                    Text="{Binding Incorrect1Entry}" />
                 <Button
                     Grid.Row="7"
                     Grid.Column="1"
@@ -152,7 +157,8 @@
                 <Entry
                     x:Name="inc2"
                     Grid.Row="9"
-                    Placeholder="Enter new Incorrect Answer" />
+                    Placeholder="Enter new Incorrect Answer" 
+                    Text="{Binding Incorrect2Entry}" />
                 <Button
                     Grid.Row="9"
                     Grid.Column="1"
@@ -178,7 +184,8 @@
                 <Entry
                     x:Name="inc3"
                     Grid.Row="11"
-                    Placeholder="Enter new Incorrect Answer" />
+                    Placeholder="Enter new Incorrect Answer" 
+                    Text="{Binding Incorrect3Entry}" />
                 <Button
                     Grid.Row="11"
                     Grid.Column="1"

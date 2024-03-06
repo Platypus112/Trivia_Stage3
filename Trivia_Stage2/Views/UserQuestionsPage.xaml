@@ -51,7 +51,7 @@
                             Margin="4,5"
                             Padding="4"
                             HeightRequest="200">
-                            <Grid RowDefinitions="*,*,*,*,*,*">
+                            <Grid RowDefinitions="*,*,*,*,*,*,*">
                                 <Label Grid.Row="0" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
@@ -63,12 +63,20 @@
                                 <Label Grid.Row="1" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
+                                            <Span FontAttributes="Bold" Text="Status: " />
+                                            <Span Text="{Binding Status.StatusName}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Grid.Row="2" Margin="3">
+                                    <Label.FormattedText>
+                                        <FormattedString>
                                             <Span FontAttributes="Bold" Text="Text: " />
                                             <Span Text="{Binding QuestionText}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Grid.Row="2" Margin="3">
+                                <Label Grid.Row="3" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span FontAttributes="Bold" Text="Correct Answer: " />
@@ -76,7 +84,7 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Grid.Row="3" Margin="3">
+                                <Label Grid.Row="4" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span FontAttributes="Bold" Text="1st Wrong Answer: " />
@@ -84,7 +92,7 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Grid.Row="4" Margin="3">
+                                <Label Grid.Row="5" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span FontAttributes="Bold" Text="2nd Wrong Answer: " />
@@ -92,7 +100,7 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Grid.Row="5" Margin="3">
+                                <Label Grid.Row="6" Margin="3">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span FontAttributes="Bold" Text="3rd Wrong Answer: " />

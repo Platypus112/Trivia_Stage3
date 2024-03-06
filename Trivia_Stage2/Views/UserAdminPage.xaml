@@ -89,9 +89,7 @@
                                         CommandParameter="{Binding .}"
                                         IconImageSource="https://cdn-icons-png.flaticon.com/512/2618/2618245.png" />
                                 </SwipeView.RightItems>
-                                <Border
-                                    Margin="4,5"
-                                    Padding="4">
+                                <Border Margin="4,5" Padding="4">
                                     <VerticalStackLayout>
                                         <Label>
                                             <Label.FormattedText>
