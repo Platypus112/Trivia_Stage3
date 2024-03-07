@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using Trivia_Stage2.Models;
 using Trivia_Stage2.Services;
 using System.Windows.Input;
-using Xamarin.Google.Crypto.Tink.Shaded.Protobuf;
 
 namespace Trivia_Stage2.ViewModels
 {
@@ -17,7 +16,7 @@ namespace Trivia_Stage2.ViewModels
     public class EditQuestionsPageViewModel : ViewModel
     {
         private Question question;
-        public Question Question { get => question; set { question = value; UpdateFields(); } }
+        public Question Question { get => question; set { question = value; OnPropertyChanged(); UpdateFields(); } }
         private Service service;
         private void UpdateFields()
         {
@@ -95,8 +94,11 @@ namespace Trivia_Stage2.ViewModels
         }
         private async Task SaveChanges()
         {
-            service.SaveEditedChanges(Question, SubjectName, QuestionText, Correct, Incorrect1, Incorrect2, Incorrect3);
-            await AppShell.Current.GoToAsync("///UserQuestionsPage");
+            if (await AppShell.Current.DisplayAlert("Save Changes?", "Are you sure you want to save the changes? The question will be changed forever and set to pending.", "Accept", "Cancel"))
+            {
+                service.SaveEditedChanges(Question, SubjectName, QuestionText, Correct, Incorrect1, Incorrect2, Incorrect3);
+                await AppShell.Current.GoToAsync("///UserQuestionsPage");
+            }
         }
         private async Task ResetChanges()
         {

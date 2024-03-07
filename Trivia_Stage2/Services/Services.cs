@@ -43,12 +43,14 @@ namespace Trivia_Stage2.Services
             question.Player=Players.Where(x => x.PlayerId == playerId).FirstOrDefault();
             question.QuestionId = index+1;
             question.Subject = Subjects.Where(s => s.SubjectName.ToLower() == subject.ToLower()).FirstOrDefault();
+            question.SubjectId = question.Subject.SubjectId;
             question.QuestionText = text;
             question.Correct = c;
             question.Incorrect1 = inc1;
             question.Incorrect2 = inc2;
             question.Incorrect3 = inc3;
             question.Status = QuestionStatuses.Where(s => s.StatusId == 1).FirstOrDefault();
+            question.StatusId = question.Status.StatusId;
             Questions.Insert(index, question);
         }
         private async void AddPlayerToQuestions()
