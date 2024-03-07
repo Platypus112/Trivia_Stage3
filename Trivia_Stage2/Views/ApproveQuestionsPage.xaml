@@ -8,18 +8,19 @@
     Title="ApproveQuestionsPage"
     x:DataType="viewModel:ApproveQuestionsPageViewModel">
     <RefreshView Command="{Binding LoadPendingQuestionsCommand}" IsRefreshing="{Binding IsRefreshing}">
-        <ScrollView Margin="10">
+        <ScrollView x:Name="scrlview" Margin="10">
 
 
 
             <Grid ColumnDefinitions="3*,2*,*" RowDefinitions="1*,10*">
-                <Entry
-                    x:Name="filter"
+                <Picker
+                    x:DataType="Model:Subject"
                     Grid.Row="0"
                     Grid.Column="0"
-                    Margin="10"
-                    Placeholder="Enter Subect"
-                    Text="{Binding FilterEntry}" />
+                    Title="Choose a subject"
+                    ItemsSource="{Binding BindingContext.subjects , Source={x:Reference scrlview}}"
+                    ItemDisplayBinding="{Binding SubjectName}"
+                    SelectedItem="{Binding BindingContext.SelectedSubject , Source={x:Reference scrlview}}"/>
                 <Button
                     Grid.Row="0"
                     Grid.Column="1"
@@ -28,7 +29,6 @@
                     BorderColor="Black"
                     BorderWidth="3"
                     Command="{Binding FilterBySubjectCommand}"
-                    CommandParameter="{Binding Text, Source={x:Reference filter}}"
                     Text="Filter by Status"
                     TextColor="Black" />
 
