@@ -23,6 +23,7 @@
                     Grid.Row="2"
                     Grid.Column="1"
                     Margin="2,4"
+                    BackgroundColor="Aqua"
                     BorderColor="Black"
                     BorderWidth="3"
                     Command="{Binding Search}"
@@ -32,23 +33,8 @@
                     IsEnabled="True"
                     Text="Search"
                     TextColor="black"
-                    WidthRequest="100"
-                    BackgroundColor="Aqua"/>
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    BackgroundColor="AliceBlue"
-                    Margin="2,4"
-                    Command="{Binding Reload}"
-                    Text="Reload"
-                    TextColor="black"
-                    WidthRequest="100"
-                    FontAttributes="Bold"
-                    HeightRequest="50"
-                    HorizontalOptions="CenterAndExpand"
-                    BorderColor="Black"
-                    BorderWidth="3"
-                    />
+                    WidthRequest="100" />
+
 
                 <CollectionView
                     Grid.Row="0"

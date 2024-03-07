@@ -12,7 +12,8 @@ namespace Trivia_Stage2.ViewModels
     public class BestScoresPageViewModel : ViewModel
     {
         private Service service;
-        public bool IsReloading { get; set; }
+        public bool IsReloading { get { return isReloading; } set{isReloading=value; OnPropertyChanged(); } }
+        private bool isReloading;
         public ICommand Reload { get; set; }
         public ICommand Search { get; set; }
         public bool IsOrdered;
@@ -35,8 +36,7 @@ namespace Trivia_Stage2.ViewModels
         }
         public async Task TaskReload() 
         { 
-            if (IsReloading) 
-                return; 
+            
             IsReloading = true; 
             players.Clear(); 
             if (IsOrdered) 
