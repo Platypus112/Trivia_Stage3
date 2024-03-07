@@ -9,4 +9,6 @@ public partial class BestScoresPage : ContentPage
 		InitializeComponent();
         this.BindingContext = vm;
     }
+
+    
 }

@@ -32,7 +32,24 @@
                     IsEnabled="True"
                     Text="Search"
                     TextColor="black"
-                    WidthRequest="100" />
+                    WidthRequest="100"
+                    BackgroundColor="Aqua"/>
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    BackgroundColor="AliceBlue"
+                    Margin="2,4"
+                    Command="{Binding Reload}"
+                    Text="Reload"
+                    TextColor="black"
+                    WidthRequest="100"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    HorizontalOptions="CenterAndExpand"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    />
+
                 <CollectionView
                     Grid.Row="0"
                     IsEnabled="True"
@@ -72,7 +89,9 @@
                 </CollectionView>
                 <StackLayout Grid.Column="3">
                     <Label FontAttributes="Bold" Text="Selected Player Details" />
+                    <Label Text="Rank" />
                     <Label Text="{Binding SelectedPlayer.Rank.RankName}" />
+                    <Label Text="Player ID" />
                     <Label Text="{Binding SelectedPlayer.PlayerId}" />
                 </StackLayout>
             </Grid>
