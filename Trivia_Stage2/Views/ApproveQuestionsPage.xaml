@@ -134,7 +134,7 @@
                     </CollectionView.ItemTemplate>
                     <CollectionView.EmptyView>
                         <StackLayout>
-                            <Label HorizontalOptions="CenterAndExpand" Text="אין השאלות" />
+                            <Label HorizontalOptions="CenterAndExpand" Text="אין שאלות" />
                             <Image
                                 Aspect="AspectFit"
                                 HeightRequest="80"

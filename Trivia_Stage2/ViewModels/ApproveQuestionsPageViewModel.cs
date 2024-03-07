@@ -69,7 +69,7 @@ namespace Trivia_Stage2.ViewModels
         private void FilterSubject()
         {
             PendingQuestions.Clear();
-            foreach (Question q in service.Questions.Where(x => x.SubjectId == SelectedSubject.SubjectId))
+            foreach (Question q in service.Questions.Where(x => x.SubjectId == SelectedSubject.SubjectId && x.StatusId == 1))
             {
                 PendingQuestions.Add(q);
             }
