@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -32,6 +33,18 @@ namespace Trivia_Stage2.Services
             AddRanksToPlayers();
             AddStatusesToQuestions();
             AddPlayerToQuestions();
+        }
+        public bool PlayerIsLogged()
+        {
+            return LoggedPlayer!= null;
+        }
+        public List<Player> GetPlayersSortedById()
+        {
+            return Players.OrderBy(x => x.PlayerId).ToList();
+        }
+        public List<Player> GetPlayersSortedByRank()
+        {
+            return Players.OrderBy(x=> -x.RankId).ToList();
         }
         public async void SaveEditedChanges(Question question, string subject, string text, string c, string inc1, string inc2, string inc3)
         {

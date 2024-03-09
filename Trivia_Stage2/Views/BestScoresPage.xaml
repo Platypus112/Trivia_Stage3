@@ -5,39 +5,64 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Model="clr-namespace:Trivia_Stage2.Models"
     xmlns:viewModel="clr-namespace:Trivia_Stage2.ViewModels"
-    Title="Best Scores Page"
+    Title="Bexst Scores Page"
     x:DataType="viewModel:BestScoresPageViewModel">
     <RefreshView Command="{Binding Reload}" IsRefreshing="{Binding IsReloading}">
         <ScrollView x:Name="scrlview" Margin="10">
-            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,13*">
                 <Picker
+                    Margin="10"
+                    FontSize="Subtitle"
                     x:Name="Picker"
-                    Title="    Choose a rank"
-                    Grid.Row="2"
-                    Grid.Column="1"
+                    Title="Choose a rank"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalOptions="CenterAndExpand"
                     x:DataType="Model:Rank"
                     ItemDisplayBinding="{Binding RankName}"
                     ItemsSource="{Binding BindingContext.Ranks, Source={x:Reference scrlview}}"
                     SelectedItem="{Binding BindingContext.SelectedRank, Source={x:Reference scrlview}}" />
                 <Button
-                    Grid.Row="2"
+                    Grid.Row="0"
                     Grid.Column="1"
                     Margin="2,4"
                     BackgroundColor="Aqua"
                     BorderColor="Black"
-                    BorderWidth="3"
+                    BorderWidth="5"
                     Command="{Binding Search}"
                     FontAttributes="Bold"
                     HeightRequest="50"
-                    HorizontalOptions="CenterAndExpand"
+                    WidthRequest="300"
+                    HorizontalOptions="StartAndExpand"
                     IsEnabled="True"
                     Text="Search"
                     TextColor="black"
-                    WidthRequest="100" />
+                    />
+                <StackLayout Grid.Column="2" Grid.Row="0">
+                    <Label FontSize="Title" FontAttributes="Bold,Italic" Text="Selected Player Details" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontSize="Subtitle" FontAttributes="Bold" Text="Rank: " />
+                                <Span FontSize="Subtitle" Text="{Binding SelectedPlayer.Rank.RankName}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontSize="Subtitle" FontAttributes="Bold" Text="Player ID: " />
+                                <Span FontSize="Subtitle" Text="{Binding SelectedPlayer.PlayerId}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
 
 
                 <CollectionView
-                    Grid.Row="0"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     IsEnabled="True"
                     ItemsSource="{Binding players}"
                     SelectedItem="{Binding SelectedPlayer}"
@@ -73,13 +98,6 @@
                         <Label Text="No results, please refresh" />
                     </CollectionView.EmptyView>
                 </CollectionView>
-                <StackLayout Grid.Column="3">
-                    <Label FontAttributes="Bold" Text="Selected Player Details" />
-                    <Label Text="Rank" />
-                    <Label Text="{Binding SelectedPlayer.Rank.RankName}" />
-                    <Label Text="Player ID" />
-                    <Label Text="{Binding SelectedPlayer.PlayerId}" />
-                </StackLayout>
             </Grid>
         </ScrollView>
     </RefreshView>

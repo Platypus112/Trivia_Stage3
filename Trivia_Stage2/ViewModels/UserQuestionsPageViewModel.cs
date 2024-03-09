@@ -70,7 +70,7 @@ namespace Trivia_Stage2.ViewModels
         private async Task LoadQuestions()
         {
             IsRefreshing = true;
-            questionKeeper = service.GetLoggedQuestions();
+            if(service.PlayerIsLogged())questionKeeper = service.GetLoggedQuestions();
             Questions.Clear();
             FilterEntry = string.Empty;
             foreach (Question q in questionKeeper)

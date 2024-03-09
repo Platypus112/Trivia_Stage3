@@ -11,7 +11,7 @@
         <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
             <Grid Margin="3">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.4*" />
+                    <RowDefinition Height="0.5*" />
                     <RowDefinition Height="0.1*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>

@@ -55,7 +55,7 @@ namespace Trivia_Stage2.ViewModels
                     ErrorColor = Color.Parse("Red");
                     return;
                 }
-                if (((Player)obj).PlayerId == service.LoggedPlayer.PlayerId)
+                if (service.PlayerIsLogged()&&((Player)obj).PlayerId == service.LoggedPlayer.PlayerId)
                 {
                     ErrorMsg = "Can't delete yourself";
                     ErrorColor = Color.Parse("Red");
@@ -109,7 +109,7 @@ namespace Trivia_Stage2.ViewModels
         }
         private async void SortByRank()
         {
-            Players = new ObservableCollection<Player>(service.Players.OrderBy(x => -x.RankId));
+            Players = new ObservableCollection<Player>(service.GetPlayersSortedByRank());
         }
         private async void AddPlayer()
         {
@@ -121,7 +121,7 @@ namespace Trivia_Stage2.ViewModels
             }
             else
             {
-                ErrorMsg = "Error adding message";
+                ErrorMsg = "Error adding player";
                 ErrorColor = Color.Parse("Red");
                 Refresh();
             }
@@ -132,7 +132,7 @@ namespace Trivia_Stage2.ViewModels
             PlayerNameEntry = "";
             EmailEntry = "";
             PasswordEntry = "";
-            Players = new ObservableCollection<Player>(service.Players.OrderBy(x => x.PlayerId));
+            Players = new ObservableCollection<Player>(service.GetPlayersSortedById());
             IsRefreshing = false;
         }
     }
