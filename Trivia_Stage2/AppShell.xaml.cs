@@ -14,7 +14,10 @@ namespace Trivia_Stage2
             Routing.RegisterRoute("LoginPage", typeof(LoginPage));
             Routing.RegisterRoute("EditQuestionsPage",typeof(EditQuestionsPage));
             InitializeComponent();
-            
+            //LoginPage, UserAdminPage - Idan
+            //ApproveQuestionsPage - Lynn 
+            //BestScoresPage - Aviv
+            //UserQuestionsPage - Ofek
         }
     }
 }
