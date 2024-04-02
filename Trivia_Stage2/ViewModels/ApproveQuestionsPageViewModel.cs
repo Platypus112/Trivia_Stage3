@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Trivia_Stage2.Models;
-using Trivia_Stage2.Services;
+using Trivia_Stage3.Models;
+using Trivia_Stage3.Services;
 
 
 
-namespace Trivia_Stage2.ViewModels
+namespace Trivia_Stage3.ViewModels
 {
     public class ApproveQuestionsPageViewModel:ViewModel
     {

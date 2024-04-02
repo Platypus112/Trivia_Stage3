@@ -1,5 +1,5 @@
-﻿using Trivia_Stage2.ViewModels;
-namespace Trivia_Stage2
+﻿using Trivia_Stage3.ViewModels;
+namespace Trivia_Stage3
 
 {
     public partial class App : Application

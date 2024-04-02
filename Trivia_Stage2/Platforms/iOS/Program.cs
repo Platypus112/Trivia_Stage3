@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace Trivia_Stage2
+namespace Trivia_Stage3.Platforms.iOS
 {
     public class Program
     {

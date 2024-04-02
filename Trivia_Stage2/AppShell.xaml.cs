@@ -1,6 +1,6 @@
-﻿using Trivia_Stage2.ViewModels;
-using Trivia_Stage2.Views;
-namespace Trivia_Stage2
+﻿using Trivia_Stage3.ViewModels;
+using Trivia_Stage3.Views;
+namespace Trivia_Stage3
     
 {
     public partial class AppShell : Shell

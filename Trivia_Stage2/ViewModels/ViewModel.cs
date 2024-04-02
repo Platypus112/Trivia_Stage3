@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Trivia_Stage2.ViewModels
+namespace Trivia_Stage3.ViewModels
 {
     public class ViewModel: INotifyPropertyChanged
     {

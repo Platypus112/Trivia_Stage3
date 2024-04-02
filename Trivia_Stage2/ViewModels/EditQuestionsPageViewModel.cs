@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Trivia_Stage2.Models;
-using Trivia_Stage2.Services;
+using Trivia_Stage3.Models;
+using Trivia_Stage3.Services;
 using System.Windows.Input;
 
-namespace Trivia_Stage2.ViewModels
+namespace Trivia_Stage3.ViewModels
 {
     [QueryProperty(nameof(Question), "Question")]
     public class EditQuestionsPageViewModel : ViewModel

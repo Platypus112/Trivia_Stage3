@@ -2,7 +2,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 using System;
 
-namespace Trivia_Stage2
+namespace Trivia_Stage3
 {
     internal class Program : MauiApplication
     {

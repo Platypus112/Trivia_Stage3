@@ -1,4 +1,4 @@
-﻿namespace Trivia_Stage2
+﻿namespace Trivia_Stage3
 {
     public partial class MainPage : ContentPage
     {

@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace Trivia_Stage2
+namespace Trivia_Stage3.Platforms.MacCatalyst
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Trivia_Stage2.Models;
+using Trivia_Stage3.Models;
 
-namespace Trivia_Stage2.Services
+namespace Trivia_Stage3.Services
 {
     public class Service
     {
+        private readonly string URL = "https://trivia.runasp.net/Swagger/index.html";
+        private HttpClient client;
+        private JsonSerializerOptions options;
         public Player LoggedPlayer { get; private set; }
         public List<Player> Players { get { return playerService.Players; } private set { this.playerService.Players = value; } }
         private PlayerService playerService;
@@ -24,6 +28,12 @@ namespace Trivia_Stage2.Services
         private SubjectService subjectService;
         public Service()
         {
+            options = new JsonSerializerOptions()
+            {
+                PropertyNameCaseInsensitive = true,
+                WriteIndented = true
+            };
+            client = new HttpClient();
             playerService = new PlayerService();
             questionService = new QuestionService();
             questionStatusService = new QuestionStatusService();

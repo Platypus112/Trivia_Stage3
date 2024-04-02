@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using Trivia_Stage2.Services;
-using Trivia_Stage2.Views;
-using Trivia_Stage2.ViewModels;
+using Trivia_Stage3.Services;
+using Trivia_Stage3.Views;
+using Trivia_Stage3.ViewModels;
 
-namespace Trivia_Stage2
+namespace Trivia_Stage3
 {
     public static class MauiProgram
     {

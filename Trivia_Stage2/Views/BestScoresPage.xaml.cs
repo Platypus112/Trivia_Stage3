@@ -1,6 +1,6 @@
-using Trivia_Stage2.ViewModels;
+using Trivia_Stage3.ViewModels;
 
-namespace Trivia_Stage2.Views;
+namespace Trivia_Stage3.Views;
 
 public partial class BestScoresPage : ContentPage
 {
