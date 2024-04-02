@@ -93,6 +93,9 @@
 	  <MauiXaml Update="Views\RegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\TriviaGamePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\UserAdminPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

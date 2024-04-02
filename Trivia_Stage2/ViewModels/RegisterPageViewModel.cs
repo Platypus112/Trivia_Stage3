@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Trivia_Stage3.Services;
+using Trivia_Stage3.Models;
 
 
 namespace Trivia_Stage3.ViewModels
 {
     public class RegisterPageViewModel:ViewModel
     {
-        private Service service
+        private Service service;
         private string playerName;
         public string PlayerName { get { return playerName; } set { playerName = value; OnPropertyChanged(); ((Command)RegisterCommand).ChangeCanExecute(); ((Command)CancelCommand).ChangeCanExecute(); } }
         private string email;
@@ -23,9 +25,9 @@ namespace Trivia_Stage3.ViewModels
         public Color NotifColor { get { return notifColor; } set { notifColor = value; OnPropertyChanged(); } }
         public ICommand RegisterCommand { get; set; }
         public ICommand CancelCommand { get; set; }
-        public RegisterPageViewModel(Service)
+        public RegisterPageViewModel(Service _service)
         {
-
+            service = _service;
         }
     }
 }
