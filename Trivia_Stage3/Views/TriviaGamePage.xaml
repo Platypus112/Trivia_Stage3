@@ -4,7 +4,7 @@
              x:Class="Trivia_Stage3.Views.TriviaGamePage"
              xmlns:Model="clr-namespace:Trivia_Stage3.Models"
              xmlns:viewModel="clr-namespace:Trivia_Stage3.ViewModels"
-             x:DataType="viewModel:TriviaGameViewModel"
+             x:DataType="viewModel:TriviaGamePageViewModel"
              Title="TriviaGamePage">
     <VerticalStackLayout>
         <Label 

@@ -12,7 +12,7 @@ namespace Trivia_Stage3.Services
 {
     public class Service
     {
-        private readonly string URL = "https://trivia.runasp.net/Swagger/index.html";
+        private readonly string URL = "https://qsc714b9-7128.euw.devtunnels.ms/TriviaApi";
         private HttpClient client;
         private JsonSerializerOptions options;
         public Player LoggedPlayer { get; private set; }
@@ -159,11 +159,56 @@ namespace Trivia_Stage3.Services
                 return false;
             }
         }
-        public bool LogPlayer(string playerName,string password)
+        public async Task<bool> RegisterPlayer(string email,string name, string password)
         {
             try
             {
-                LoggedPlayer = Players.Where(x => x.PlayerName == playerName && x.Password == password).FirstOrDefault();
+                JsonSerializerOptions options = new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, PropertyNameCaseInsensitive = true };
+
+                string jsonString = JsonSerializer.Serialize(new OtherPlayerForLogin() { 
+                    playerEmail = email,
+                    playerId=0,
+                    playerName=name,
+                    playerScore=0,
+                    playerPassword=password,
+                    questions = new Question2[0],
+                    playerRank=new Playerrank2()
+                    {
+                        rankId=0,
+                        rankName="string"
+                    }
+                }, options);
+                HttpResponseMessage message = await client.PostAsync(URL + "/RegisterPlayer", new StringContent(jsonString, Encoding.UTF8, "application/json"));
+                if (message.IsSuccessStatusCode)
+                {
+                    LoggedPlayer = playerService.ConvertLoginToNormal(JsonSerializer.Deserialize<OtherPlayerForLogin>(await message.Content.ReadAsStringAsync()));
+                }
+                return LoggedPlayer != null;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public async Task<bool> LogPlayer(string email,string password)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, PropertyNameCaseInsensitive = true };
+                
+                string jsonString = JsonSerializer.Serialize(new PlayerForLogin() { Email=email,Password=password}, options);
+                HttpResponseMessage message = await client.PostAsync(URL + "/Login",new StringContent(jsonString,Encoding.UTF8, "application/json"));
+                if (message.IsSuccessStatusCode)
+                {
+                    OtherPlayerForLogin p = JsonSerializer.Deserialize<OtherPlayerForLogin>(await message.Content.ReadAsStringAsync());
+                    LoggedPlayer = this.Players.Where(x=>x.PlayerId==p.playerId).FirstOrDefault();
+                    if(LoggedPlayer == null&&p!=null)
+                    {
+                        LoggedPlayer = playerService.ConvertLoginToNormal(p);
+                        AddRanksToPlayers();
+                        this.Players.Add(LoggedPlayer);
+                    }
+                }
                 return LoggedPlayer != null;
             }
             catch
@@ -220,6 +265,48 @@ namespace Trivia_Stage3.Services
         public bool IsNameValid(string name)
         {
             return !string.IsNullOrEmpty(name) && name.Length >= 3 && name.Length <= 30;
+        }
+        public Player ConvertRegisterToNormal(ResultFromRegisterPlayer p)
+        {
+            return new Player()
+            {
+                PlayerId = p.playerId,
+                Email = p.playerEmail,
+                Password = p.playerPassword,
+                PlayerName = p.playerName,
+                Points = p.playerScore,
+                //RankId = p.playerRank.rankId,
+            };
+        }
+        public Player ConvertLoginToNormal(OtherPlayerForLogin p)
+        {
+            return new Player()
+            {
+                PlayerId = p.playerId,
+                Email = p.playerEmail,
+                Password = p.playerPassword,
+                PlayerName = p.playerName,
+                Points = p.playerScore,
+                RankId= p.playerRank.rankId,
+            };
+        }
+        public OtherPlayerForLogin ConvertNormalToLogin(Player player)
+        {
+            OtherPlayerForLogin result=new OtherPlayerForLogin()
+            {
+                playerEmail = player.Email,
+                playerId = player.PlayerId,
+                playerName = player.PlayerName,
+                playerPassword = player.Password,
+                playerScore = player.Points,
+                questions = new Question2[0],
+                playerRank = new Playerrank2()
+                {
+                    rankId = 0,
+                    rankName = "????"
+                }
+            };
+            return result;
         }
         private async void FillList()
         {

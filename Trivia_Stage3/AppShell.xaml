@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:Trivia_Stage3"
     xmlns:views="clr-namespace:Trivia_Stage3.Views"
     FlyoutBehavior="Flyout">
- 
+    
         
         <ShellContent 
             Route="LoginPage"

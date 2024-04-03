@@ -27,7 +27,7 @@ namespace Trivia_Stage3
             .AddTransient<UserQuestionsPage>()
             .AddTransient<LoginPage>()
             .AddTransient<EditQuestionsPage>()
-            .AddTransient<RegisterPageViewModel>()
+            .AddTransient<RegisterPage>()
             .AddTransient<TriviaGamePage>()
 
             //Registering ViewModels

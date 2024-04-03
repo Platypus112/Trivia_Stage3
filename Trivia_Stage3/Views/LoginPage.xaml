@@ -24,8 +24,8 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             HeightRequest="50"
-            Placeholder="Username"
-            Text="{Binding PlayerName}" />
+            Placeholder="Email"
+            Text="{Binding Email}" />
         <Entry
             Grid.Row="2"
             Grid.Column="0"
@@ -34,18 +34,13 @@
             IsPassword="True"
             Placeholder="Password"
             Text="{Binding Password}" />
-        <Label
+        <HorizontalStackLayout
             Grid.Row="3"
             Grid.Column="0"
-            Grid.ColumnSpan="2"
-            FontSize="12">
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text=" Don't have an account yet? " />
-                    <Span Text="Sign up here" TextColor="Blue" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+            Grid.ColumnSpan="2">
+            <Label  FontSize="12" Text=" Don't have an account yet? " />
+            <Button Style="{StaticResource btn}" Command="{Binding NavigateToRegisterPageCommand}" Text="Register here"/>
+        </HorizontalStackLayout>
         <Button
             Grid.Row="4"
             Grid.Column="0"

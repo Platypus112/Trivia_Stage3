@@ -13,6 +13,8 @@ namespace Trivia_Stage3.ViewModels
     public class RegisterPageViewModel:ViewModel
     {
         private Service service;
+        private bool logged;
+        public bool Logged { get { return logged; } set { logged = value; OnPropertyChanged(); } }
         private string playerName;
         public string PlayerName { get { return playerName; } set { playerName = value; OnPropertyChanged(); ((Command)RegisterCommand).ChangeCanExecute(); ((Command)CancelCommand).ChangeCanExecute(); } }
         private string email;
@@ -25,9 +27,44 @@ namespace Trivia_Stage3.ViewModels
         public Color NotifColor { get { return notifColor; } set { notifColor = value; OnPropertyChanged(); } }
         public ICommand RegisterCommand { get; set; }
         public ICommand CancelCommand { get; set; }
+
+        public ICommand NavigateToLoginPageCommand { get; private set; }
         public RegisterPageViewModel(Service _service)
         {
             service = _service;
+            RegisterCommand = new Command(Register, () => !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password)&&!string.IsNullOrEmpty(PlayerName));
+            CancelCommand = new Command(Cancel, () => !string.IsNullOrEmpty(Email) || !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(PlayerName));
+            if (Logged != true)
+            {
+                Logged = false;
+                AppShell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+            }
+            NavigateToLoginPageCommand = new Command(async () => await AppShell.Current.GoToAsync("///LoginPage"));
+        }
+        private async void Register()
+        {
+            if (await service.RegisterPlayer(email,playerName, password))
+            {
+                Notif = "Login succeeded successfully";
+                NotifColor = Colors.Green;
+                Logged = true;
+                AppShell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+                await AppShell.Current.GoToAsync("///ApproveQuestionsPage");
+            }
+            else
+            {
+                Notif = "Login failed failfully";
+                NotifColor = Colors.Red;
+            }
+            Email = string.Empty;
+            PlayerName= string.Empty;
+            Password = string.Empty;
+        }
+        private async void Cancel()
+        {
+            Notif = string.Empty;
+            Email = string.Empty;
+            Password = string.Empty;
         }
     }
 }

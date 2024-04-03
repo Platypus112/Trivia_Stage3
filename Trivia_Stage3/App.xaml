@@ -5,9 +5,18 @@
              x:Class="Trivia_Stage3.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Style TargetType="Button" x:Key="btn">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="BackgroundColor" Value="white"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BorderWidth" Value="3"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

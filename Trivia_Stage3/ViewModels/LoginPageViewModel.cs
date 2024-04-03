@@ -20,25 +20,27 @@ namespace Trivia_Stage3.ViewModels
         public string Notif { get { return notif; } set { notif = value; OnPropertyChanged(); } }
         private Color notifColor;
         public Color NotifColor { get { return notifColor; } set { notifColor = value; OnPropertyChanged(); } }
-        private string playerName;
-        public string PlayerName { get { return playerName; } set { playerName = value; OnPropertyChanged(); ((Command)LoginCommand).ChangeCanExecute(); ((Command)CancelCommand).ChangeCanExecute(); } }
-        public ICommand LoginCommand { get; set; }
-        public ICommand CancelCommand { get; set; }
+        private string email;
+        public string Email { get { return email; } set { email = value; OnPropertyChanged(); ((Command)LoginCommand).ChangeCanExecute(); ((Command)CancelCommand).ChangeCanExecute(); } }
+        public ICommand LoginCommand { get; private set; }
+        public ICommand CancelCommand { get;private set; }
+        public ICommand NavigateToRegisterPageCommand { get; private set; }
         public LoginPageViewModel(Service s)
         {
             service = s;
-            LoginCommand = new Command(Login, () => !string.IsNullOrEmpty(PlayerName) && !string.IsNullOrEmpty(Password));
-            CancelCommand = new Command(Cancel, () => !string.IsNullOrEmpty(PlayerName) || !string.IsNullOrEmpty(Password));
+            LoginCommand = new Command(Login, () => !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password));
+            CancelCommand = new Command(Cancel, () => !string.IsNullOrEmpty(Email) || !string.IsNullOrEmpty(Password));
             if (Logged != true)
             {
                 Logged = false;
                 AppShell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
             }
+            NavigateToRegisterPageCommand = new Command(async ()=> await AppShell.Current.GoToAsync("RegisterPage"));
         }
 
         private async void Login()
         {
-            if (service.LogPlayer(playerName,password))
+            if (await service.LogPlayer(email,password))
             {
                 Notif = "Login succeeded successfully";
                 NotifColor = Colors.Green;
@@ -51,13 +53,13 @@ namespace Trivia_Stage3.ViewModels
                 Notif = "Login failed failfully";
                 NotifColor = Colors.Red;
             }
-            PlayerName = string.Empty;
+            Email = string.Empty;
             Password = string.Empty;
         }
         private async void Cancel()
         {
             Notif = string.Empty;
-            PlayerName = string.Empty;
+            Email = string.Empty;
             Password = string.Empty;
         }
     }
