@@ -167,16 +167,8 @@ namespace Trivia_Stage3.Services
 
                 string jsonString = JsonSerializer.Serialize(new OtherPlayerForLogin() { 
                     playerEmail = email,
-                    playerId=0,
                     playerName=name,
-                    playerScore=0,
                     playerPassword=password,
-                    questions = new Question2[0],
-                    playerRank=new Playerrank2()
-                    {
-                        rankId=0,
-                        rankName="string"
-                    }
                 }, options);
                 HttpResponseMessage message = await client.PostAsync(URL + "/RegisterPlayer", new StringContent(jsonString, Encoding.UTF8, "application/json"));
                 if (message.IsSuccessStatusCode)
